@@ -2,7 +2,7 @@
 Did my best to work around githubs segregation of Github/GithubEnterprise while copying the code. Hopefully I didnt break anything.
 Looks like the last group had quite a bit done  
   
-==https://vol-sys.herokuapp.com/events/4  
+==https://vol-sys.herokuapp.com/
   
   
 This README would normally document whatever steps are necessary to get the
