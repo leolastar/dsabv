@@ -1,0 +1,23 @@
+%header.navbar.navbar-fixed-top.navbar-inverse
+  %div.container
+    = link_to "Down Syndrome Association of Brazos Vally", "http://dsabv.org", id: "logo"
+    %nav
+      %ul.nav.navbar-nav.pull-right
+        %li= link_to "Home", root_path
+        %li= link_to "Events", events_path
+        - if logged_in?
+          - if current_user.admin
+            %li= link_to "Users", users_path
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => '#'}
+              Account
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Profile", current_user
+              %li= link_to "My registrations", registrations_user_path(current_user)
+              %li= link_to "Settings", edit_user_path(current_user)
+              %li.divider
+              %li= link_to "Log out", logout_path, method: "delete"
+        - else
+          %li= link_to "Sign up", signup_path
+          %li= link_to "Log in", login_path

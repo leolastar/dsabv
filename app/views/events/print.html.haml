@@ -1,0 +1,14 @@
+%h1 #{@event.title}
+
+%u1#details
+  %li
+    Date:
+    = @event.date
+  %li
+    Place:
+    = @event.place
+  %li
+    Description:
+    = @event.description
+
+= link_to "Back", events_path

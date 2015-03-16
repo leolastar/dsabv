@@ -1,0 +1,8 @@
+%li
+  #{event.date}:
+  = link_to event.title, event
+  - if logged_in? && current_user.admin?
+    |
+    = link_to "edit", edit_event_path(event)
+    |
+    = link_to "delete", event, method: :delete, data: { confirm: "You sure?" } 
