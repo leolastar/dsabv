@@ -1,0 +1,34 @@
+<%= provide(:title, 'Calendar' ) %>
+
+<h1>Calendar</h1>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 text-center">
+    <div class="well controls">
+      <%= link_to home_path(date: @date - 1.month), class: "btn btn-default" do %>
+        <i class="glyphicon glyphicon-backward"></i>
+      <% end %>
+      <%= "#{@date.strftime("%B")} #{@date.year}" %>
+      <%= link_to home_path(date: @date + 1.month), class: "btn btn-default" do %>
+        <i class="glyphicon glyphicon-forward"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <%= calendar @date do |date| %>
+      <% if date.month == @date.month %>
+        <%= date.day %><br>
+        <% if @events_by_date[date] %>
+          <% @events_by_date[date].each do |event| %>
+            <%= link_to event.title, event %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <br>
+      <% end %>
+    <% end %>
+  </div>
+</div>
