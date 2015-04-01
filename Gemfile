@@ -12,6 +12,24 @@ gem 'pg', group: :production
 # Heroku-specific production settings
 gem 'rails_12factor', group: :production
 
+group :development, :test do
+	gem 'jasmine-rails'
+	gem 'railroady'
+end
+
+group :test do
+	gem 'rspec-rails'
+	gem 'simplecov', :require => false
+	gem 'cucumber-rails', :require => false
+	gem 'cucumber-rails-training-wheels'
+	gem 'database_cleaner'
+	gem 'autotest-rails'
+	gem 'factory_girl_rails'
+	gem 'metric_fu'
+end
+
+gem 'puma'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
