@@ -22,6 +22,10 @@ html {
 
 body {
   padding-top: 60px;
+  background-image: url(gradient.png);
+  background-attachment: scroll;
+  background-repeat: repeat-x;
+  background-color: #032C89;
 }
 
 section {
@@ -37,6 +41,20 @@ textarea {
   h1 {
     margin-bottom: 10px;
   }
+}
+
+.home-page {
+  border-radius: 0px;
+}
+
+.container .jumbotron {
+	background-color: #fdfdfd;
+  border-radius:0px;
+}
+
+.wrapper-image {
+  width: 100%;
+  height: auto;
 }
 
 /* typography */

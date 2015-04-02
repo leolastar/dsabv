@@ -1,32 +1,32 @@
 <%= provide(:title, 'Home' ) %>
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1 center jumbotron">
+  <div class="col-xs-12 col-sm-12 center jumbotron">
     <h1>Event Registration</h1>
     <% unless logged_in? %>
-      <%= link_to "Sign up", signup_path, class: "btn btn-primary" %>
+      <%= link_to "Sign up", signup_path, class: "btn btn-primary home-page" %>
       &nbsp
-      <%= link_to "Log in", login_path, class: "btn btn-primary" %>
+      <%= link_to "Log in", login_path, class: "btn btn-primary home-page" %>
     <% end %>
   </div>
 </div>
 
 <% if logged_in? && current_user.admin? %>
-  <%= link_to "Edit Below Text", { action: :edit_text_box, id: 1, method: :get }, class: "btn btn-primary" %>
+  <%= link_to "Edit Below Text", { action: :edit_text_box, id: 1, method: :get }, class: "btn btn-primary home-page" %>
 <% end %>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12">
+  <div class="col-xs-12 col-sm-12 center jumbotron">
     Test text block 1!
   </div>
 </div>
 
 <% if logged_in? && current_user.admin? %>
-  <%= link_to "Edit Below Text", { action: :edit_text_box, id: 2 , method: :get }, class: "btn btn-primary" %>
+  <%= link_to "Edit Below Text", { action: :edit_text_box, id: 2 , method: :get }, class: "btn btn-primary home-page" %>
 <% end %>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12">
+  <div class="col-xs-12 col-sm-12 center jumbotron">
     Test text block 2!
   </div>
 </div>
