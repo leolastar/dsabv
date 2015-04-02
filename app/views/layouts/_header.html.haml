@@ -2,10 +2,13 @@
   %div.row
     %div.col-xs-12.col-sm-12.some{ :style => "padding-left:0px; padding-right:0px;" }
       =link_to image_tag("DSABV-logo.jpg", :class => "wrapper-image"), "http://dsabv.org"
-%header.navbar.navbar-fixed-top.navbar-inverse
+%header.navbar.navbar-fixed-top.navbar-inverse.navbar-default.some{ :role => "navigation" }
   %div.container
     = link_to "Down Syndrome Association of Brazos Valley", "http://dsabv.org", id: "logo"
-    %nav
+    %div.navbar-header
+      %button.navbar-toggle.some{ :type => "button", :data_toggle => "collapse", :data_target => "#navigationbar"}
+        %i.fa.fa-bars
+    %nav.collapse.navbar-collapse.some{ :id => "navigationbar"}
       %ul.nav.navbar-nav.pull-right
         %li= link_to "Home", root_path
         %li= link_to "Events", events_path
