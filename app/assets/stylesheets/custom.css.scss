@@ -47,9 +47,13 @@ textarea {
   border-radius: 0px;
 }
 
-.container .jumbotron {
+.container .jumbotron, .footer-style {
 	background-color: #fdfdfd;
   border-radius:0px;
+}
+
+.footer-style {
+  padding-top: 15px;
 }
 
 .wrapper-image {
@@ -110,7 +114,6 @@ p {
 /* footer */
 
 footer {
-  margin-top: 200px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   border-bottom: 1px;
