@@ -1,31 +1,90 @@
 %div.container
-  %div.row
-    %div.col-xs-12.col-sm-12.some{ :style => "padding-left:0px; padding-right:0px;" }
-      =link_to image_tag("DSABV-logo.jpg", :class => "wrapper-image"), "http://dsabv.org"
-%header.navbar.navbar-fixed-top.navbar-inverse.navbar-default.some{ :role => "navigation" }
-  %div.container
-    = link_to "Down Syndrome Association of Brazos Valley", "http://dsabv.org", id: "logo"
-    %div.navbar-header
-      %button.navbar-toggle.some{ :type => "button", :data_toggle => "collapse", :data_target => "#navigationbar"}
-        %i.fa.fa-bars
-    %nav.collapse.navbar-collapse.some{ :id => "navigationbar"}
-      %ul.nav.navbar-nav.pull-right
-        %li= link_to "Home", root_path
-        %li= link_to "Events", events_path
-        %li= link_to "Calendar", calendar_path
-        - if logged_in?
-          - if current_user.admin
-            %li= link_to "Users", users_path
+  %nav.navbar.navbar-default
+    %div.container-fluid
+      %div.navbar-header
+        %button.navbar-toggle.collapsed{ :type => "button", :data_toggle => "collapse", :data_target => "#navbar", :aria_expanded => "false", :aria_controls => "navbar"}
+          %span.sr-only
+            Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.nav-brand{ :href => "#" }
+          Project Name
+      %div.navbar-collapse.collapse{ :id => "navbar"}
+        %ul.nav.navbar-nav
+          %li.active
+            %a{ :href => "#" }
+              Home
+          %li
+            %a{ :href => "#" }
+              About
+          %li
+            %a{ :href => "#" }
+              Contact
           %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => '#'}
-              Account
-              %b.caret
-            %ul.dropdown-menu
-              %li= link_to "Profile", current_user
-              %li= link_to "My registrations", registrations_user_path(current_user)
-              %li= link_to "Settings", edit_user_path(current_user)
+            %a.dropdown-toggle{ :href => "#", :data_toggle => "dropdown", :role => "button", :aria_expanded => "false"}
+              Dropdown
+              %span.caret
+            %ul.dropdown-menu{ :role => "menu" }
+              %li
+                %a{ :href => "#" }
+                  Action
+              %li
+                %a{ :href => "#" }
+                  Another Action
+              %li
+                %a{ :href => "#" }
+                  Soemthine else here
               %li.divider
-              %li= link_to "Log out", logout_path, method: "delete"
-        - else
-          %li= link_to "Sign up", signup_path
-          %li= link_to "Log in", login_path
+              %li.dropdown-header
+                Nav header
+              %li
+                %a{ :href => "#" }
+                  Separated link
+              %li
+                %a{ :href => "#" }
+                  One more separated link
+        %ul.nav.navbar-nav.navbar-right
+          %li.active
+            %a{ :href => "./" }
+              Default
+              %span.sr-only
+                (current)
+          %li
+            %a{ :href => "../navbar-static-top/" }
+              Static Top
+          %li
+            %a{ :href => "../navbar-fixed-top/" }
+              Fixed Top
+/ %div.container
+/   %div.row
+/     %div.col-xs-12.col-sm-12.some{ :style => "padding-left:0px; padding-right:0px;" }
+/       =link_to image_tag("DSABV-logo.jpg", :class => "wrapper-image"), "http://dsabv.org", class: "img-responsive"
+/ %header.navbar.navbar-fixed-top.navbar-inverse.some{ :role => "navigation" }
+/   %div.container
+/     = link_to "Down Syndrome Association of Brazos Valley", "http://dsabv.org", id: "logo"
+/     %div.navbar-header
+/       = link_to "Home", root_path, class: "navbar-brand"
+/       %button.navbar-toggle.some{ :type => "button", :data_toggle => "collapse", :data_target => "#navigationbar"}
+/         %i.fa.fa-bars
+/     %nav.navbar-collapse.collapse.some{ :id => "navigationbar"}
+/       %ul.nav.navbar-nav.pull-right
+/         %li= link_to "Home", root_path
+/         %li= link_to "Events", events_path
+/         %li= link_to "Calendar", calendar_path
+/         - if logged_in?
+/           - if current_user.admin
+/             %li= link_to "Users", users_path
+/           %li.dropdown
+/             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => '#'}
+/               Account
+/               %b.caret
+/             %ul.dropdown-menu
+/               %li= link_to "Profile", current_user
+/               %li= link_to "My registrations", registrations_user_path(current_user)
+/               %li= link_to "Settings", edit_user_path(current_user)
+/               %li.divider
+/               %li= link_to "Log out", logout_path, method: "delete"
+/         - else
+/           %li= link_to "Sign up", signup_path
+/           %li= link_to "Log in", login_path
