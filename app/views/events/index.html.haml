@@ -1,8 +1,10 @@
 = provide(:title, 'All events')
-%h1 All Events
-%ul.events
-  = render @events
-  %br/
-  -if logged_in? && current_user.admin
-    = link_to "Add new event", new_event_path
-= will_paginate
+%div.row
+	%div.col-xs-12.col-sm-12.jumbotron
+		%h1 All Events
+		%ul.events
+			= render @events
+			%br
+			-if logged_in? && current_user.admin
+				= link_to "Add new event", new_event_path
+		= will_paginate

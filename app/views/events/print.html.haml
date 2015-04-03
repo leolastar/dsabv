@@ -1,14 +1,16 @@
-%h1 #{@event.title}
+%div.row
+	%div.col-xs-12.col-sm-12.jumbrotron
+		%h1 #{@event.title}
 
-%u1#details
-  %li
-    Date:
-    = @event.date
-  %li
-    Place:
-    = @event.place
-  %li
-    Description:
-    = @event.description
+		%u1#details
+			%li
+				Date:
+				= @event.date
+			%li
+				Place:
+				= @event.place
+			%li
+				Description:
+				= @event.description
 
-= link_to "Back", events_path
+		= link_to "Back", events_path

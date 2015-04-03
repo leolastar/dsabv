@@ -1,34 +1,30 @@
 - provide(:title, 'Add time slot to #{@event.title}')
 %div.row
-  %aside.col-md-8
+  %div.col-xs-12.col-sm-12.jumbotron
     %section.event_info
       %h1 #{@event.title}
-      %br/
-      %br/
-      - if logged_in? && current_user.admin
-        %none.col-md-4
-          = form_for([@event, @time_slot]) do |f|
-            = render 'shared/error_messages', object: f.object
-            = f.label :start_time
-            = f.time_field :start_time, class: "form-control"
-            = f.label :end_time
-            = f.time_field :end_time, class: "form-control" 
-            = f.label :total_capacity, "Capacity"
-            = f.number_field :total_capacity, class: "form-control"
-            = f.submit "Submit", class: "btn btn-primary"
-          %br/
-          = link_to "Back", event_path(@event)
-      -else
-        Access Denied
-  %aside.col-md-4
-    %br/
-    %br/
-    %br/
-    %h6 Time
-    - if @event.time_slots.any?
-      %ol.time_slots
-        = render @time_slots
-      = will_paginate @time_slots
+      %div.row
+        %div.col-xs-12.col-sm-8
+          - if logged_in? && current_user.admin
+            = form_for([@event, @time_slot]) do |f|
+              = render 'shared/error_messages', object: f.object
+              = f.label :start_time
+              = f.time_field :start_time, class: "form-control"
+              = f.label :end_time
+              = f.time_field :end_time, class: "form-control" 
+              = f.label :total_capacity, "Capacity"
+              = f.number_field :total_capacity, class: "form-control"
+              = f.submit "Submit", class: "btn btn-primary"
+            %br/
+            = link_to "Back", event_path(@event)
+          -else
+            Access Denied
+        %div.col-xs-12.col-sm-4
+          %h6 Time
+          - if @event.time_slots.any?
+            %ol.time_slots
+              = render @time_slots
+            = will_paginate @time_slots
 
 
 

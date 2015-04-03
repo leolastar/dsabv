@@ -1,7 +1,7 @@
 - provide(:title, 'Edit event')
-%h1 Edit Event
 %div.row
-  %div.col-md-6.col-md-offset-3
+  %div.col-xs-12.col-sm-12.jumbotron
+    %h1 Edit Event
     = form_for(@event) do |f|
       = render 'shared/error_messages', object: f.object
 
