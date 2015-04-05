@@ -1,0 +1,14 @@
+<%= provide(:title, 'Edit Text Box' ) %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 center jumbotron">
+    <h1>Edit Text Box</h1>
+
+    <%= form_for(:text, static_page) do |f| %>
+
+      <%= f.text_field :, class: 'form-control' %>
+
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
