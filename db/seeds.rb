@@ -116,4 +116,6 @@ sample_events.each do |event|
     time_slot[:end_time]   = date + " " + time_slot[:end_time]
     Event.last.time_slots.create!(time_slot)
   end
+
+
 end
