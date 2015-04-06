@@ -1,7 +1,7 @@
 <%= provide(:title, 'Home' ) %>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12 center jumbotron">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 center jumbotron">
     <h1>Event Registration</h1>
     <% unless logged_in? %>
       <%= link_to "Sign up", signup_path, class: "btn btn-primary home-page" %>
@@ -16,7 +16,7 @@
 <% end %>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12 jumbotron">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 jumbotron">
     <div><%= @article_top.text.html_safe %></div>
   </div>
 </div>
@@ -26,7 +26,7 @@
 <% end %>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12 jumbotron">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 jumbotron">
     <div><%= @article_bottom.text.html_safe %></div>
   </div>
 </div>
