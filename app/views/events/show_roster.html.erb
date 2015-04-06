@@ -1,7 +1,7 @@
 <% provide(:title, 'Roster') %>
 <% if logged_in? && current_user.admin %>
 <div class="row">
-  <div class="col-xs-12 col-sm-12 jumbotron">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 jumbotron">
       <h1><%= @event.title %></h1>
       <ul class="col-xs-12 col-md-12" id="details">
         <%= @event.date %><br>

@@ -1,7 +1,7 @@
 <%= provide(:title, 'Calendar' ) %>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12 text-center jumbotron">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center jumbotron">
     <h1>Calendar</h1>
     <div class="well controls">
       <%= link_to calendar_path(date: @date - 1.month), class: "btn btn-default" do %>
