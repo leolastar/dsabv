@@ -24,4 +24,17 @@ Feature: Login and Signup
     When I press "Login"
     Then I should be on my admin page
 
-#    Scenario: Signup as a volunteer site
+    Scenario: Signup as a volunteer site
+    Given I visit the home page
+    When I follow "Sign up"
+    Then I should be on the sign up page
+        And I fill in "Name" with "test"
+        And I fill in "Email" with "testing@testing.com"
+        And I fill in "Password" with "password"
+        And I fill in "Password Confirmation" with "password"
+        And I fill in "Phone Number" with "(999) 000-0000"
+        And I fill in "Address" with "123 Main St"
+        And I fill in "Emergency contact name" with "My friend"
+        And I fill in "Emergency contact phone" with "(999) 000-0000"
+    When I create my account
+    Then I should be on the home page
