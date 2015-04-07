@@ -23,6 +23,7 @@ group :test do
 	gem 'simplecov', :require => false
 	gem 'cucumber-rails', :require => false
 	gem 'cucumber-rails-training-wheels'
+	gem 'selenium-webdriver'
 	gem 'database_cleaner'
 	gem 'autotest-rails'
 	gem 'factory_girl_rails'

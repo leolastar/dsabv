@@ -13,8 +13,16 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the home\s?page$/
-      '/'
+    when /the home page/
+      then root_path
+    when /the edit text page/
+      then edit_article_path(:id => 1)
+    when /the login page/
+      then login_path
+    when /my user page/
+      then user_path(:id => 2)
+    when /my admin page/
+      then user_path(:id => 1)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
