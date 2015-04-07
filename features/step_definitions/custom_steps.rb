@@ -18,16 +18,6 @@ Given(/^I visit the home page$/) do
   visit path_to("the home page")
 end
 
-When(/^I create my account$/) do
-	user = User.new
-	user.email = "testing2@test.com"
-	user.id = 2
-  UserMailer.account_activation(user).default_url_options = {:host => "localhost:3000"}
-  steps %{
-    When I press "Create my account"
-  }
-end
-
 Given(/^I am login in as an admin$/) do
   steps %{
     Given I visit the home page
