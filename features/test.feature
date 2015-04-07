@@ -4,7 +4,7 @@ Feature: Admin's editable text boxs
 	I need a way to edit the home page
 
   Scenario: Edit top text box                        
-    Given I am on the homepage                  
+    Given I am on edit_article                  
     	And I am login in as an admin                        
     When I press "Edit Text"
     Then I should be on edit_article
