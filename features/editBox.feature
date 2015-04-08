@@ -27,6 +27,10 @@ Feature: Admin's editable text boxs
     	And I should see "test 2"
     When I follow "Edit Text"
     Then I should be on the edit text page
+        And I fill in "Text" with "<h1>Howdy</h1>"
+    When I press "Submit"
+    Then I should be on the home page
+        And I should see "Howdy"
     
 
 
