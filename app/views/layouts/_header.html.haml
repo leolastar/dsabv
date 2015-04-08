@@ -1,61 +1,60 @@
-%div.container
-  %nav.navbar.navbar-default
-    %div.container-fluid
-      %div.navbar-header
-        %button.navbar-toggle.collapsed{ :type => "button", :data_toggle => "collapse", :data_target => "#navbar", :aria_expanded => "false", :aria_controls => "navbar"}
-          %span.sr-only
-            Toggle navigation
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        %a.nav-brand{ :href => "#" }
-          Project Name
-      %div.navbar-collapse.collapse{ :id => "navbar"}
-        %ul.nav.navbar-nav
-          %li.active
-            %a{ :href => "#" }
-              Home
-          %li
-            %a{ :href => "#" }
-              About
-          %li
-            %a{ :href => "#" }
-              Contact
-          %li.dropdown
-            %a.dropdown-toggle{ :href => "#", :data_toggle => "dropdown", :role => "button", :aria_expanded => "false"}
-              Dropdown
-              %span.caret
-            %ul.dropdown-menu{ :role => "menu" }
-              %li
-                %a{ :href => "#" }
-                  Action
-              %li
-                %a{ :href => "#" }
-                  Another Action
-              %li
-                %a{ :href => "#" }
-                  Soemthine else here
-              %li.divider
-              %li.dropdown-header
-                Nav header
-              %li
-                %a{ :href => "#" }
-                  Separated link
-              %li
-                %a{ :href => "#" }
-                  One more separated link
-        %ul.nav.navbar-nav.navbar-right
-          %li.active
-            %a{ :href => "./" }
-              Default
-              %span.sr-only
-                (current)
-          %li
-            %a{ :href => "../navbar-static-top/" }
-              Static Top
-          %li
-            %a{ :href => "../navbar-fixed-top/" }
-              Fixed Top
+%nav.navbar.navbar-default.navbar-fixed-top
+  %div.container
+    %div.navbar-header
+      %button.navbar-toggle.collapsed{ :type => "button", :data_toggle => "collapse", :data_target => "#navbar", :aria_expanded => "false", :aria_controls => "navbar"}
+        %span.sr-only
+          Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{ :href=> "#" }
+        Project name
+    %div.navbar-collapse.collapse{ :id => "navbar"}
+      %ul.nav.navbar-nav
+        %li.active 
+          %a{ :href => "#"}
+            Home
+        %li 
+          %a{ :href => "#about"}
+            About
+        %li 
+          %a{ :href => "#contact"}
+            Contact
+        %li.dropdown
+          %a.dropdown-toggle{ :href => "#", :data_toggle => "dropdown", :role => "button", :aria_expanded =>"false" }
+            Dropdown
+            %span.caret
+          %ul.dropdown-menu{ :role=> "menu"}
+            %li
+              %a{ :href => "#"}
+                Action
+            %li
+              %a{ :href => "#"}
+                Another Action
+            %li
+              %a{ :href => "#"}
+                Something els here
+            %li.divider
+            %li.dropdown-header
+              Nav header
+            %li
+              %a{ :href => "#"}
+                Separated link
+            %li
+              %a{ :href => "#"}
+                One more separated link
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a{ :href => "../navbar/"}
+            Default
+        %li
+          %a{ :href => "../navbar-static-top/"}
+            Static top
+        %li.active
+          %a{ :href => "./"}
+            Fixed top
+            %span.sr-only
+              (current)
 / %div.container
 /   %div.row
 /     %div.col-xs-12.col-sm-12.some{ :style => "padding-left:0px; padding-right:0px;" }
