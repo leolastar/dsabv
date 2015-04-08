@@ -1,12 +1,14 @@
-%div.container
-  %div.row
-    %div.col-xs-12.col-sm-10.col-sm-offset-1.some{ :style => "padding-left:0px; padding-right:0px;" }
-      =link_to image_tag("DSABV-logo.jpg", :class => "wrapper-image"), "http://dsabv.org"
-%header.navbar.navbar-fixed-top.navbar-inverse
-  %div.container
-    = link_to "Down Syndrome Association of Brazos Valley", "http://dsabv.org", id: "logo"
-    %nav
-      %ul.nav.navbar-nav.pull-right
+%nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "http://dsabv.org", :id => "logo" } Down Syndrome Association of Brazos Valley
+    #navbar.navbar-right.navbar-collapse.collapse{"aria-expanded" => "false", :style => "height: 1px;"}
+      %ul.nav.navbar-nav
         %li= link_to "Home", root_path
         %li= link_to "Events", events_path
         %li= link_to "Calendar", calendar_path
@@ -14,10 +16,10 @@
           - if current_user.admin
             %li= link_to "Users", users_path
           %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => '#'}
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               Account
-              %b.caret
-            %ul.dropdown-menu
+              %span.caret
+            %ul.dropdown-menu{:role => "menu"}
               %li= link_to "Profile", current_user
               %li= link_to "My registrations", registrations_user_path(current_user)
               %li= link_to "Settings", edit_user_path(current_user)
@@ -26,3 +28,7 @@
         - else
           %li= link_to "Sign up", signup_path
           %li= link_to "Log in", login_path
+%div.container
+  %div.row
+    %div.col-xs-12.col-sm-12.some{ :style => "padding-left:0px; padding-right:0px;" }
+      =link_to image_tag("DSABV-logo.jpg", :class => "wrapper-image"), "http://dsabv.org", class: "img-responsive"
