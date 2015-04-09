@@ -1,5 +1,4 @@
 class TimeSlot < ActiveRecord::Base
-
   belongs_to :event
   validate :event_id, presence: true
 
