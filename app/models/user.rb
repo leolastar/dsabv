@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :time_slots
+  has_many :appointments
+  has_many :time_slots, through: :appointments
   has_many :events, through: :time_slots
 
   attr_accessor :remember_token, :activation_token, :reset_token
