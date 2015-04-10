@@ -23,6 +23,10 @@ module NavigationHelpers
       then user_path(:id => 2)
     when /my admin page/
       then user_path(:id => 1)
+    when /the events page/
+      then events_path
+    when /my event page/
+      then "/events/1"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

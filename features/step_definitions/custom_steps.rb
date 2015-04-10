@@ -44,6 +44,30 @@ Given(/^I am login in as an user$/) do
   }
 end
 
+When(/^I create a new event$/) do
+  steps %{
+    When I follow "Add new event"
+    Then I should be on the new event page
+        And I fill in "Title" with "Test event"
+        And I fill in "Date" with "12/12/2014"
+        And I fill in "Place" with "Mi casa"
+        And I fill in "Description" with "description"
+    When I press "Create new event"
+    Then I should be on my event page
+    When I follow "Back"
+  }
+end
+
+Then(/^I should see this new event$/) do
+  steps %{
+    Then I should be on the events page
+        And I should see "Test event"
+        And I should see "edit"
+        And I should see "delete"
+  }
+end
+
+
 When(/^I am a user$/) do
 	if(User.find_by_id(2) == nil) 
   	@user = User.create(:admin => false, :id => 2, :activated => true, :name => "test2", :email => "test@test.com", :password => "password", :address => "123 Main St");
