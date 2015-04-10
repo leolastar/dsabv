@@ -9,12 +9,12 @@ class CreateAppointments < ActiveRecord::Migration
     end
 
     User.find_each {|user|
-    usr.time_slots.each do |slot|
-      Appointment.create!(:user_id => user.id, :time_slot_id => slot.id, :is_checkedin => false )
-    end
-  }
+	    user.time_slots.each do |slot|
+	      Appointment.create!(:user_id => user.id, :time_slot_id => slot.id, :is_checkedin => false )
+	    end
+  	}
 
-  # finally, dump the old hatbm associations
-  drop_table :time_slots_users
+	  # finally, dump the old hatbm associations
+	  drop_table :time_slots_users
   end
 end

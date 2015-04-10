@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def appointment(timeslot)
+    appointment = Appointment.where(user_id: self.id, time_slot_id: timeslot.id).first
+  end
+ 
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = User.new_token

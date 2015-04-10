@@ -18,10 +18,10 @@
             </tr>
             <% time_slot.users.each do |user| %>
               <tr>
-                <% if user.is_checkedin? %>
-                  <td><%= link_to "Checked", disable_button class: "btn btn-primary disabled home-page"  %></td>
+                <% if user.appointment(time_slot).is_checkedin %>
+                  <td><%= link_to "Checked", root_path, class: "btn btn-primary disabled home-page" %></td>
                 <% else %>
-                  <td><%= link_to "Check in", checkin_path, class: "btn btn-primary home-page" %></td>
+                  <td><%= link_to "Check in", checkin_path(:id => user.id, :timeslot_id => time_slot.id, :event_id => @event.id), class: "btn btn-primary home-page" %></td>
                 <% end %>
                 <td><%= link_to user.name, user %></td>
                 <td><%= user.email %></td>
