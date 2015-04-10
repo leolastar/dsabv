@@ -71,8 +71,8 @@ class EventsController < ApplicationController
     EventMailer.event_registration(current_user, time_slot).deliver
 
     current_user.time_slots << time_slot
-    appointment = Appointment.new(:user_id => current_user.id, :time_slot_id => time_slot.id, :is_checkedin => false)
-    appointment.save
+    #appointment = Appointment.new(:user_id => current_user.id, :time_slot_id => time_slot.id, :is_checkedin => false)
+    #appointment.save
     flash[:success] = "You have successfully registered the event."
     redirect_to registrations_user_path(current_user)
   end
