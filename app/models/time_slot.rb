@@ -7,4 +7,8 @@ class TimeSlot < ActiveRecord::Base
   has_many :users, through: :appointments
 
   default_scope -> { order(start_time: :asc) }
+
+  def capacity_left
+  	self.total_capacity - self.users.count
+  end
 end
