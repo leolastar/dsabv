@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get    'home'   => 'static_pages#home'
   get    'calendar' => 'static_pages#calendar'
   get    'edit_text_box' => 'static_pages#edit_text_box'
+  get    'checkin' => 'users#checkin'
 
   get    'signup' => 'users#new'
   get    'login'  => 'sessions#new'
