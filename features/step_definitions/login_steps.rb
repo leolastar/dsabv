@@ -18,7 +18,7 @@ Given(/^I visit the home page$/) do
   visit path_to("the home page")
 end
 
-Given(/^I am login in as an admin$/) do
+Given(/^I am login as an admin$/) do
   steps %{
     Given I visit the home page
     When I am an admin
@@ -31,7 +31,7 @@ Given(/^I am login in as an admin$/) do
   }
 end
 
-Given(/^I am login in as an user$/) do
+Given(/^I am login as an user$/) do
   steps %{
     Given I visit the home page
     When I am a user
@@ -44,26 +44,17 @@ Given(/^I am login in as an user$/) do
   }
 end
 
-When(/^I create a new event$/) do
+When(/^I logout as an admin$/) do
   steps %{
-    When I follow "Add new event"
-    Then I should be on the new event page
-        And I fill in "Title" with "Test event"
-        And I fill in "Date" with "12/12/2014"
-        And I fill in "Place" with "Mi casa"
-        And I fill in "Description" with "description"
-    When I press "Create new event"
-    Then I should be on my event page
-    When I follow "Back"
+    When I follow "Log out"
+        Then I should see "Log in"
   }
 end
 
-Then(/^I should see this new event$/) do
+When(/^I logout as an user$/) do
   steps %{
-    Then I should be on the events page
-        And I should see "Test event"
-        And I should see "edit"
-        And I should see "delete"
+    When I follow "Log out"
+        Then I should see "Log in"
   }
 end
 

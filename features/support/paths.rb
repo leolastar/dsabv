@@ -25,8 +25,14 @@ module NavigationHelpers
       then user_path(:id => 1)
     when /the events page/
       then events_path
-    when /my event page/
+    when /the event page/
       then "/events/1"
+    when /the add time slot page/
+      then add_time_slot_to_event_path(1)
+    when /the events roster/
+      then roster_of_event_path(1)
+    when /my registrations page/
+      then registrations_user_path(2)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
