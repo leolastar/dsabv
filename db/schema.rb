@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405232100) do
+ActiveRecord::Schema.define(version: 20150409014248) do
+
+  create_table "appointments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "time_slot_id"
+    t.boolean  "is_checkedin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "articles", force: true do |t|
     t.text     "text"
@@ -36,11 +44,6 @@ ActiveRecord::Schema.define(version: 20150405232100) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "time_slots_users", force: true do |t|
-    t.integer "time_slot_id"
-    t.integer "user_id"
   end
 
   create_table "users", force: true do |t|

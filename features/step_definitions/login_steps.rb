@@ -18,7 +18,7 @@ Given(/^I visit the home page$/) do
   visit path_to("the home page")
 end
 
-Given(/^I am login in as an admin$/) do
+Given(/^I am login as an admin$/) do
   steps %{
     Given I visit the home page
     When I am an admin
@@ -31,7 +31,7 @@ Given(/^I am login in as an admin$/) do
   }
 end
 
-Given(/^I am login in as an user$/) do
+Given(/^I am login as an user$/) do
   steps %{
     Given I visit the home page
     When I am a user
@@ -43,6 +43,21 @@ Given(/^I am login in as an user$/) do
     Then I should be on my user page
   }
 end
+
+When(/^I logout as an admin$/) do
+  steps %{
+    When I follow "Log out"
+        Then I should see "Log in"
+  }
+end
+
+When(/^I logout as an user$/) do
+  steps %{
+    When I follow "Log out"
+        Then I should see "Log in"
+  }
+end
+
 
 When(/^I am a user$/) do
 	if(User.find_by_id(2) == nil) 

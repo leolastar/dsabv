@@ -4,14 +4,14 @@
     #{time_slot.end_time.strftime("%I:%M %p")}
   %span.content
     Capacity:
-    #{time_slot.remaining_capacity} out of
+    #{time_slot.capacity_left} out of
     #{time_slot.total_capacity}
     |
     - if logged_in? && current_user.admin
       = link_to "delete", { action: :destroy, controller: :time_slots, id: time_slot.id, event_id: time_slot.event.id }, method: :delete, data: { confirm: "Are you sure?" }
     - elsif logged_in? && current_user.time_slots.exists?(time_slot.id)
       registered
-    - elsif time_slot.remaining_capacity > 0
+    - elsif time_slot.capacity_left > 0
       = link_to "register", { action: :register, time_slot_id: time_slot.id }, { method: :put }
     - else
       full
