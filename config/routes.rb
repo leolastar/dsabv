@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   post   'login'  => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
+  get     'registration_confirmation'=> 'users#registration_confirmation', as: 'reg'
+
   get    'events/:id/roster'        => 'events#show_roster',   as: 'roster_of_event'
   get    'events/:id/add_time_slot' => 'events#add_time_slot', as: 'add_time_slot_to_event'
 
