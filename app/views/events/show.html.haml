@@ -7,10 +7,13 @@
         %section.event_info
           %p Date
           = @event.date
-          %p Place
+
+          %p Location
           = @event.place
+
           %p Description
           = @event.description
+
         - if logged_in? && current_user.admin
           = link_to "Edit", edit_event_path(@event)
           \&nbsp

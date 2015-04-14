@@ -81,3 +81,6 @@ gem 'bootstrap-will_paginate'
 
 # Use Faker to generate data
 gem 'faker'
+
+# Pick a date UI
+gem 'pickadate-rails'
