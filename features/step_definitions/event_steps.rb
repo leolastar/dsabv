@@ -16,7 +16,7 @@ When(/^I create a new event$/) do
     Then I should be on the new event page
         And I fill in "Title" with "Test event"
         And I fill in "Date" with "12/12/2014"
-        And I fill in "Place" with "Mi casa"
+        And I fill in "Location" with "Mi casa"
         And I fill in "Description" with "description"
     When I press "Create new event"
     Then I should be on the event page
@@ -28,8 +28,9 @@ Then(/^I should see this new event$/) do
   steps %{
     Then I should be on the events page
         And I should see "Test event"
-        And I should see "edit"
-        And I should see "delete"
+        And I should see "December 12, 2014"
+        And I should see "Edit"
+        And I should see "Delete"
   }
 end
 
@@ -67,8 +68,8 @@ When(/I create a timeslot$/) do
 	steps %{
   	When I follow "Add time slot"
     Then I should be on the add time slot page
-        And I fill in "Start time" with "9:00"
-        And I fill in "End time" with "9:50"
+        And I fill in "Start Time" with "9:00"
+        And I fill in "End Time" with "9:50"
         And I fill in "Capacity" with "15"
     When I press "Submit"
   }
@@ -105,5 +106,20 @@ Given(/^an user registers the event$/) do
     Then I should be on the event page
         And I should see "registered"
         And I logout as an user
+  }
+end
+
+Then(/^I should see the event$/) do
+  steps %{
+    Then I should be on the events page
+      And I should see "Test event"
+      And I should see "December 12, 2014"
+  }
+end
+
+Then(/^the correct date is shown$/) do
+  steps %{
+    Then I should be on the events page
+      And I should see "December 12, 2014"
   }
 end

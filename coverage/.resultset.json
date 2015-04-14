@@ -1,14 +1,14 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/environment.rb": [
+      "/home/saasbook/working/Legacy/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/application.rb": [
+      "/home/saasbook/working/Legacy/config/application.rb": [
         1,
         null,
         1,
@@ -35,13 +35,13 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/boot.rb": [
+      "/home/saasbook/working/Legacy/config/boot.rb": [
         null,
         1,
         null,
         1
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/environments/test.rb": [
+      "/home/saasbook/working/Legacy/config/environments/test.rb": [
         1,
         null,
         null,
@@ -82,7 +82,7 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/initializers/assets.rb": [
+      "/home/saasbook/working/Legacy/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -92,7 +92,7 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/initializers/backtrace_silencers.rb": [
+      "/home/saasbook/working/Legacy/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -101,18 +101,18 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/initializers/cookies_serializer.rb": [
+      "/home/saasbook/working/Legacy/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/initializers/filter_parameter_logging.rb": [
+      "/home/saasbook/working/Legacy/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/initializers/inflections.rb": [
+      "/home/saasbook/working/Legacy/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -130,18 +130,23 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/initializers/mime_types.rb": [
+      "/home/saasbook/working/Legacy/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/initializers/session_store.rb": [
+      "/home/saasbook/working/Legacy/config/initializers/rails_defaults.rb": [
+        1,
+        null,
+        1
+      ],
+      "/home/saasbook/working/Legacy/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/initializers/wrap_parameters.rb": [
+      "/home/saasbook/working/Legacy/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -157,7 +162,7 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/config/routes.rb": [
+      "/home/saasbook/working/Legacy/config/routes.rb": [
         1,
         null,
         1,
@@ -251,7 +256,7 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/features/support/paths.rb": [
+      "/home/saasbook/working/Legacy/features/support/paths.rb": [
         null,
         null,
         null,
@@ -265,23 +270,23 @@
         null,
         null,
         1,
-        121,
+        130,
         null,
         null,
-        32,
+        33,
         null,
         3,
         null,
-        20,
+        21,
         null,
         8,
         null,
-        12,
-        null,
-        17,
-        null,
         13,
         null,
+        21,
+        null,
+        14,
+        null,
         4,
         null,
         4,
@@ -295,10 +300,10 @@
         null,
         null,
         null,
-        6,
-        6,
-        6,
-        6,
+        7,
+        7,
+        7,
+        7,
         0,
         0,
         null,
@@ -309,7 +314,7 @@
         null,
         1
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/features/support/selectors.rb": [
+      "/home/saasbook/working/Legacy/features/support/selectors.rb": [
         null,
         null,
         null,
@@ -355,7 +360,7 @@
         null,
         1
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/features/step_definitions/event_steps.rb": [
+      "/home/saasbook/working/Legacy/features/step_definitions/event_steps.rb": [
         1,
         1,
         1,
@@ -369,7 +374,7 @@
         1,
         null,
         1,
-        6,
+        7,
         null,
         null,
         null,
@@ -383,7 +388,8 @@
         null,
         null,
         1,
-        6,
+        7,
+        null,
         null,
         null,
         null,
@@ -392,7 +398,7 @@
         null,
         null,
         1,
-        5,
+        6,
         null,
         null,
         null,
@@ -461,12 +467,27 @@
         null,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
         null,
         null,
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/features/step_definitions/login_steps.rb": [
+      "/home/saasbook/working/Legacy/features/step_definitions/login_steps.rb": [
         1,
         1,
         1,
@@ -480,15 +501,15 @@
         1,
         null,
         1,
-        25,
-        14,
-        14,
+        26,
+        15,
+        15,
         null,
-        25,
+        26,
         null,
         null,
         1,
-        11,
+        12,
         null,
         null,
         null,
@@ -535,13 +556,13 @@
         null,
         null,
         1,
-        12,
-        9,
+        13,
+        10,
         null,
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/features/step_definitions/web_steps.rb": [
+      "/home/saasbook/working/Legacy/features/step_definitions/web_steps.rb": [
         null,
         null,
         null,
@@ -586,7 +607,7 @@
         null,
         null,
         1,
-        14,
+        15,
         null,
         null,
         1,
@@ -594,40 +615,36 @@
         null,
         null,
         1,
-        30,
+        32,
         null,
         null,
         1,
-        55,
+        58,
         null,
         null,
         1,
-        74,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
+        80,
         null,
         null,
         1,
         0,
-        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         null,
         1,
         0,
+        0,
+        null,
         null,
         null,
         1,
@@ -647,8 +664,12 @@
         null,
         null,
         1,
-        49,
-        49,
+        0,
+        null,
+        null,
+        1,
+        62,
+        62,
         null,
         0,
         null,
@@ -772,9 +793,9 @@
         null,
         null,
         1,
-        77,
-        77,
-        77,
+        84,
+        84,
+        84,
         null,
         0,
         null,
@@ -797,15 +818,15 @@
         0,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/models/article.rb": [
+      "/home/saasbook/working/Legacy/app/models/article.rb": [
         1,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/controllers/static_pages_controller.rb": [
+      "/home/saasbook/working/Legacy/app/controllers/static_pages_controller.rb": [
         1,
         1,
-        39,
-        39,
+        40,
+        40,
         null,
         null,
         1,
@@ -814,7 +835,7 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/controllers/application_controller.rb": [
+      "/home/saasbook/working/Legacy/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -837,16 +858,16 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/helpers/application_helper.rb": [
+      "/home/saasbook/working/Legacy/app/helpers/application_helper.rb": [
         1,
         null,
         null,
         1,
-        129,
-        129,
+        136,
+        136,
         0,
         null,
-        129,
+        136,
         null,
         null,
         null,
@@ -857,29 +878,29 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/helpers/account_activations_helper.rb": [
+      "/home/saasbook/working/Legacy/app/helpers/account_activations_helper.rb": [
         1,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/helpers/articles_helper.rb": [
+      "/home/saasbook/working/Legacy/app/helpers/articles_helper.rb": [
         1,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/helpers/events_helper.rb": [
+      "/home/saasbook/working/Legacy/app/helpers/events_helper.rb": [
         1,
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/helpers/password_resets_helper.rb": [
+      "/home/saasbook/working/Legacy/app/helpers/password_resets_helper.rb": [
         1,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/helpers/sessions_helper.rb": [
+      "/home/saasbook/working/Legacy/app/helpers/sessions_helper.rb": [
         1,
         null,
         null,
         1,
-        20,
+        21,
         null,
         null,
         null,
@@ -891,9 +912,9 @@
         null,
         null,
         1,
-        795,
-        650,
-        145,
+        835,
+        685,
+        150,
         0,
         0,
         0,
@@ -904,14 +925,14 @@
         null,
         null,
         1,
-        355,
+        370,
         null,
         null,
         null,
         1,
-        29,
-        29,
-        29,
+        30,
+        30,
+        30,
         null,
         null,
         null,
@@ -923,13 +944,13 @@
         null,
         null,
         1,
-        20,
+        21,
         null,
         null,
         null,
         1,
-        20,
-        20,
+        21,
+        21,
         null,
         null,
         null,
@@ -939,28 +960,28 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/helpers/static_pages_helper.rb": [
+      "/home/saasbook/working/Legacy/app/helpers/static_pages_helper.rb": [
         1,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/helpers/time_slots_helper.rb": [
+      "/home/saasbook/working/Legacy/app/helpers/time_slots_helper.rb": [
         1,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/helpers/users_helper.rb": [
+      "/home/saasbook/working/Legacy/app/helpers/users_helper.rb": [
         1,
         null,
         null,
         1,
-        20,
-        20,
-        20,
-        20,
+        21,
+        21,
+        21,
+        21,
         null,
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/controllers/articles_controller.rb": [
+      "/home/saasbook/working/Legacy/app/controllers/articles_controller.rb": [
         1,
         1,
         null,
@@ -984,7 +1005,7 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/models/user.rb": [
+      "/home/saasbook/working/Legacy/app/models/user.rb": [
         1,
         1,
         1,
@@ -1007,14 +1028,14 @@
         1,
         null,
         1,
-        17,
+        18,
         null,
-        17,
+        18,
         null,
         null,
         null,
         1,
-        17,
+        18,
         null,
         null,
         1,
@@ -1029,7 +1050,7 @@
         null,
         null,
         1,
-        29,
+        30,
         null,
         null,
         1,
@@ -1072,29 +1093,29 @@
         1,
         null,
         1,
-        46,
+        48,
         null,
         null,
         null,
         1,
-        17,
-        17,
+        18,
+        18,
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/controllers/sessions_controller.rb": [
+      "/home/saasbook/working/Legacy/app/controllers/sessions_controller.rb": [
         1,
         null,
         1,
         null,
         null,
         1,
-        20,
-        20,
-        20,
-        20,
-        20,
-        20,
+        21,
+        21,
+        21,
+        21,
+        21,
+        21,
         null,
         0,
         0,
@@ -1114,7 +1135,7 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/controllers/users_controller.rb": [
+      "/home/saasbook/working/Legacy/app/controllers/users_controller.rb": [
         1,
         1,
         1,
@@ -1125,7 +1146,7 @@
         null,
         null,
         1,
-        20,
+        21,
         null,
         null,
         1,
@@ -1201,30 +1222,30 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/controllers/events_controller.rb": [
+      "/home/saasbook/working/Legacy/app/controllers/events_controller.rb": [
         1,
         1,
         1,
         null,
         1,
         null,
-        17,
-        null,
-        null,
-        1,
-        19,
         19,
         null,
         null,
         1,
-        6,
+        20,
+        20,
         null,
         null,
         1,
-        6,
-        6,
-        6,
-        6,
+        7,
+        null,
+        null,
+        1,
+        7,
+        7,
+        7,
+        7,
         null,
         0,
         null,
@@ -1282,7 +1303,7 @@
         1,
         null,
         1,
-        6,
+        7,
         null,
         null,
         null,
@@ -1290,7 +1311,7 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/models/event.rb": [
+      "/home/saasbook/working/Legacy/app/models/event.rb": [
         1,
         1,
         1,
@@ -1300,7 +1321,7 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/models/time_slot.rb": [
+      "/home/saasbook/working/Legacy/app/models/time_slot.rb": [
         1,
         1,
         1,
@@ -1309,14 +1330,14 @@
         1,
         1,
         null,
-        123,
+        127,
         null,
         1,
         10,
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/controllers/time_slots_controller.rb": [
+      "/home/saasbook/working/Legacy/app/controllers/time_slots_controller.rb": [
         1,
         1,
         null,
@@ -1358,13 +1379,13 @@
         null,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/models/appointment.rb": [
+      "/home/saasbook/working/Legacy/app/models/appointment.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/saasbook/Documents/BrazosValley/Legacy/app/mailers/event_mailer.rb": [
+      "/home/saasbook/working/Legacy/app/mailers/event_mailer.rb": [
         1,
         1,
         null,
@@ -1392,6 +1413,6 @@
         null
       ]
     },
-    "timestamp": 1428884806
+    "timestamp": 1429049781
   }
 }
