@@ -1,9 +1,9 @@
 Feature: Events Management
-	In order to manage events
-	As an admin
-	I need a way to create, view events, and check users in
+    In order to manage events
+    As an admin
+    I need a way to create, view events, and check users in
 
-	Scenario: Create an event
+    Scenario: Create an event
     Given I am login as an admin                
         And I am on the events page
     When I create a new event
@@ -32,3 +32,10 @@ Feature: Events Management
     Then I should not see "Add time slot"
     When I go to the add time slot page
     Then I should be on the home page
+
+    Scenario: Date format on Events page
+    Given I am login as an admin
+        And I am on the events page
+        And an event is created
+    Then I should see the event
+        And the correct date is shown

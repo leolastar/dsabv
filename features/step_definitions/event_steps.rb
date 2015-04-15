@@ -16,7 +16,7 @@ When(/^I create a new event$/) do
     Then I should be on the new event page
         And I fill in "Title" with "Test event"
         And I fill in "Date" with "12/12/2014"
-        And I fill in "Place" with "Mi casa"
+        And I fill in "Location" with "Mi casa"
         And I fill in "Description" with "description"
     When I press "Create new event"
     Then I should be on the event page
@@ -28,8 +28,9 @@ Then(/^I should see this new event$/) do
   steps %{
     Then I should be on the events page
         And I should see "Test event"
-        And I should see "edit"
-        And I should see "delete"
+        And I should see "December 12, 2014"
+        And I should see "Edit"
+        And I should see "Delete"
   }
 end
 
@@ -56,7 +57,7 @@ end
 
 Then(/^I should see this new timeslot$/) do
   steps %{
-  	Then I should be on the event page
+    Then I should be on the event page
         And I should see "9:00 AM"
         And I should see "9:50 AM"
         And I should see "Capacity"
@@ -64,38 +65,38 @@ Then(/^I should see this new timeslot$/) do
 end
 
 When(/I create a timeslot$/) do
-	steps %{
-  	When I follow "Add time slot"
+  steps %{
+    When I follow "Add time slot"
     Then I should be on the add time slot page
-        And I fill in "Start time" with "9:00"
-        And I fill in "End time" with "9:50"
+        And I fill in "Start Time" with "9:00"
+        And I fill in "End Time" with "9:50"
         And I fill in "Capacity" with "15"
     When I press "Submit"
   }
 end
 
 Given(/an admin created an event$/) do 
-	steps %{
-		Given I am login as an admin                
-	        And I am on the events page
-	        And an event is created
-	    Then I logout as an admin
-	}
+  steps %{
+    Given I am login as an admin                
+          And I am on the events page
+          And an event is created
+      Then I logout as an admin
+  }
 end
 
 Given(/^an admin creates a timeslot$/) do
   steps %{
-		Given I am login as an admin                
-	        And I am on the events page
-	    Then I follow "Test event"
-	    	And I create a timeslot
-	    	And I logout as an admin
-	}
+    Given I am login as an admin                
+          And I am on the events page
+      Then I follow "Test event"
+        And I create a timeslot
+        And I logout as an admin
+  }
 end
 
 Given(/^an user registers the event$/) do
   steps %{
-  	Given I am login as an user
+    Given I am login as an user
         And I am on the event page
     Then I should see "register"
     When I follow "register"
@@ -105,5 +106,20 @@ Given(/^an user registers the event$/) do
     Then I should be on the event page
         And I should see "registered"
         And I logout as an user
+  }
+end
+
+Then(/^I should see the event$/) do
+  steps %{
+    Then I should be on the events page
+      And I should see "Test event"
+      And I should see "December 12, 2014"
+  }
+end
+
+Then(/^the correct date is shown$/) do
+  steps %{
+    Then I should be on the events page
+      And I should see "December 12, 2014"
   }
 end
