@@ -3,5 +3,7 @@
 	%div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
 		%h1 All users
 		%ul.users
-			= render @users
+			= search_field :search, :search_input
+			= submit_tag 'Search'
+			= render @users.order('name ASC')
 		= will_paginate
