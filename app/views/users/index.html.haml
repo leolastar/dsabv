@@ -3,5 +3,5 @@
 	%div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
 		%h1 All users
 		%ul.users
-			= render @users
+			= render @users.order('name ASC')
 		= will_paginate
