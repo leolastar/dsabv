@@ -8,7 +8,7 @@ Feature: Admin's editable text boxs
     Then I should see "test 1"
     	And I should see "test 2"
     	And I should not see "Edit Text"
-    Then I go to the edit text page
+    When I go to the edit text page
     	And I should be on the home page
 
 	Scenario: Edit text box not visible to user                      
@@ -17,7 +17,7 @@ Feature: Admin's editable text boxs
     Then I should see "test 1"
     	And I should see "test 2"
     	And I should not see "Edit Text"
-    Then I go to the edit text page
+    When I go to the edit text page
     	And I should be on the home page
 
     Scenario: Edit text box as admin                       
