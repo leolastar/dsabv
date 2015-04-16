@@ -1,7 +1,7 @@
 <% provide(:title, 'Roster') %>
-<% if logged_in? && current_user.admin %>
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 jumbotron">
+    <% if logged_in? && (current_user.admin || current_user.staff) %>
       <h1><%= @event.title %></h1>
       <ul class="col-xs-12 col-md-12" id="details">
         <%= @event.date %><br>
@@ -33,8 +33,8 @@
         <% end %>
         <%= link_to "Back", event_path(@event) %>
       </ul>
+      <% else %>
+        Access Denied
+      <% end %>
     </div>
   </div>
-<% else %>
-  Access Denied
-<% end %>

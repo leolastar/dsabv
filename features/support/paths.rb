@@ -23,8 +23,6 @@ module NavigationHelpers
       then user_path(:id => 2)
     when /my admin page/
       then user_path(:id => 1)
-    when /the events page/
-      then events_path
     when /the event page/
       then "/events/1"
     when /the add time slot page/

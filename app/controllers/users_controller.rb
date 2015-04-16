@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:destroy, :checkin]
+  before_action :admin_user,     only: [:index, :destroy, :give_staff_role, :remove_staff_role]
+  before_action :staff_user,     only: [:checkin]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -59,6 +60,18 @@ class UsersController < ApplicationController
     appointment = Appointment.where(:user_id => params[:id], :time_slot_id => params[:timeslot_id]).first
     appointment.update_attributes(:is_checkedin => true)
     redirect_to roster_of_event_url(params[:event_id])
+  end
+
+  def give_staff_role
+    user = User.find(params[:id])
+    user.update_attributes(:staff => true)
+    redirect_to users_url
+  end
+
+  def remove_staff_role
+    user = User.find(params[:id])
+    user.update_attributes(:staff => false)
+    redirect_to users_url
   end
 
   private

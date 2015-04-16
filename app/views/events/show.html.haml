@@ -13,7 +13,8 @@
 
           %p Description
           = @event.description
-
+        - if logged_in? && current_user.staff
+          = link_to "Roster", roster_of_event_path(@event)
         - if logged_in? && current_user.admin
           = link_to "Edit", edit_event_path(@event)
           \&nbsp

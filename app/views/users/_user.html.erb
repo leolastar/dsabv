@@ -3,6 +3,11 @@
   <%= link_to user.name, user %>
   (<%= user.email %>)
   <% if current_user.admin? && !current_user?(user) %>
+  	<% if user.staff %>
+  		| <%= link_to "remove staff role", remove_staff_role_path(:id => user.id) %>
+  	<% else %>
+  		| <%= link_to "add staff role", give_staff_role_path(:id => user.id) %>
+  	<% end %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>

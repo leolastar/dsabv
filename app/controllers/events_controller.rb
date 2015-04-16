@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :logged_in_user, only: [:register]
-  before_action :admin_user,     only: [:edit, :update, :destroy, :show_roster, :add_time_slot]
+  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_time_slot]
+  before_action :staff_user,     only: [:show_roster]
 
   def index
     # Pagination

@@ -34,7 +34,7 @@ end
 Given(/^I am login as an user$/) do
   steps %{
     Given I visit the home page
-    When I am a user
+    When I am an user
         And I follow "Log in"
     Then I should be on the login page
         And I fill in "Email" with "test@test.com"
@@ -59,10 +59,16 @@ When(/^I logout as an user$/) do
 end
 
 
-When(/^I am a user$/) do
+When(/^I am an user$/) do
 	if(User.find_by_id(2) == nil) 
   	@user = User.create(:admin => false, :id => 2, :activated => true, :name => "test2", :email => "test@test.com", :password => "password", :address => "123 Main St");
   end
+end
+
+Given(/^an user is signed up$/) do
+  steps %{
+    When I am an user
+  }
 end
 
 When(/^I am an admin$/) do

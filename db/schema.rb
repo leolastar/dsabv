@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409014248) do
+ActiveRecord::Schema.define(version: 20150414205121) do
 
   create_table "appointments", force: true do |t|
     t.integer  "user_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150409014248) do
     t.datetime "event_register_email_notify"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "staff",                       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
