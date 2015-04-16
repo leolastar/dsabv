@@ -55,11 +55,8 @@ Feature: Staff can check people in
     Given an admin created an event
         And an admin creates a timeslot
         And an user registers the event
-        And I am login as an admin
-        And I am on the users page
-        And I made him a staff member    
-    Then I logout as an admin
-        And I am login as an user
+        And an admin has a staff memember
+    Then I am login as an user
     When I go to the event page
         And I should see "Roster"
     When I go to the events roster
@@ -75,12 +72,8 @@ Feature: Staff can check people in
     Given an admin created an event
         And an admin creates a timeslot
         And an user registers the event
-        And I am login as an admin
-        And I am on the users page
-        And I made him a staff member
-    Then I go to the users page
-        And I follow "remove staff role"
-    Then I logout as an admin
+        And an admin has a staff memember
+    Then an admin removes staff role
     Then I am login as an user
     When I go to the event page
         And I should not see "Roster"

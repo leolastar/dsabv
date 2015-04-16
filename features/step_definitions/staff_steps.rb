@@ -33,6 +33,21 @@ Given(/^I made him a staff member$/) do
 	    Then I should be on the users page
 	}
 end
-  #user = User.find_by_id(2)
-  #user.staff = true
-  #user.save
+
+Given(/^an admin has a staff memember$/) do
+	steps %{
+	Given I am login as an admin
+        And I am on the users page
+        And I made him a staff member    
+    Then I logout as an admin
+	}
+end
+
+Then(/^an admin removes staff role$/) do
+	steps %{
+	Given I am login as an admin
+    Then I go to the users page
+        And I follow "remove staff role"
+    Then I logout as an admin
+	}
+end
