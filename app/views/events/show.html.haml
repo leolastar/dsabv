@@ -4,14 +4,14 @@
     %h1 #{@event.title}
     %div.row
       %div.col-xs-12.col-sm-8
-        %section.event_info
-          %p Date
+        %div.event_info
+          %h3 Date
           = @event.date
 
-          %p Location
+          %h3 Location
           = @event.place
 
-          %p Description
+          %h3 Description
           = @event.description
         - if logged_in? && current_user.staff
           = link_to "Roster", roster_of_event_path(@event)
