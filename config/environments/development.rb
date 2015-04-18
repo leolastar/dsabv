@@ -16,15 +16,15 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'localhost:3000'
+  host = 'localhost:5000'
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => "587",
     :domain => "gmail.com",
     :authentication => "plain",
-    :user_name => "dsabv.noreply@gmail.com",
-    :password => "dsabvtest",
+    :user_name => "registration@dsabv.org",
+    :password => "2015DSABVevents",
     :enable_starttls_auto => true
  }
 
