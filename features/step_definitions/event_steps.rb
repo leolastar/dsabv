@@ -50,7 +50,7 @@ end
 
 Then(/^I should not see an timeslot$/) do
   steps %{
-    Then I should not see "Capacity"
+    Then I should not see "Available slots"
         And I should not see "out of"
   }
 end
@@ -60,7 +60,7 @@ Then(/^I should see this new timeslot$/) do
     Then I should be on the event page
         And I should see "9:00 AM"
         And I should see "9:50 AM"
-        And I should see "Capacity"
+        And I should see "Available slots"
   }
 end
 
