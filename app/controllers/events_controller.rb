@@ -11,7 +11,7 @@ class EventsController < ApplicationController
 
       url = "/search?utf8=✓&q=" + params[:q]
 
-      redirect_to url
+      redirect_to search_path
     end
 
     @events = Event.paginate(page: params[:page])
