@@ -4,7 +4,16 @@ class EventsController < ApplicationController
   before_action :staff_user,     only: [:show_roster]
 
   def index
-    # Pagination
+    if params[:q].nil?
+      @events = []
+    else
+      @events = Event.search params[:q]
+
+      url = "/search?utf8=✓&q=" + params[:q]
+
+      redirect_to url
+    end
+
     @events = Event.paginate(page: params[:page])
   end
 
