@@ -4,16 +4,6 @@ class EventsController < ApplicationController
   before_action :staff_user,     only: [:show_roster]
 
   def index
-    if params[:q].nil?
-      @events = []
-    else
-      @events = Event.search params[:q]
-
-      url = "/search?utf8=✓&q=" + params[:q]
-
-      redirect_to search_path
-    end
-
     @events = Event.paginate(page: params[:page])
   end
 

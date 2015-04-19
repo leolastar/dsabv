@@ -84,8 +84,3 @@ gem 'faker'
 
 # Pick a date UI
 gem 'pickadate-rails'
-
-# Use Elasticsearch to create searches
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
-
