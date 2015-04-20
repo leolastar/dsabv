@@ -4,6 +4,16 @@ class EventsController < ApplicationController
   before_action :staff_user,     only: [:show_roster]
 
   def index
+    @events = Event.all
+    if params[:query]
+      @events = Event.search(params[:query])
+
+      url = "/search_results?utf8=✓&query=" + params[:query]
+      redirect_to url
+    else
+      @events = []
+    end
+
     @events = Event.paginate(page: params[:page])
   end
 
@@ -57,7 +67,7 @@ class EventsController < ApplicationController
       end
     end
     @event.destroy
-    flash[:notice] = "Event '#{@event.title}' deleted."
+    flash[:flash] = "Event '#{@event.title}' deleted."
     redirect_to events_path
   end
 

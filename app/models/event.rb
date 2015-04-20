@@ -7,9 +7,8 @@ class Event < ActiveRecord::Base
   end
 
   def self.search(search)
-  	where("lower(title) LIKE ?", "%#{search.downcase}%")
-  	where("lower(place) LIKE ?", "%#{search.downcase}%")
-  	where("lower(description) LIKE ?", "%#{search.downcase}%")
+  	where('title LIKE ? OR place LIKE ? OR description LIKE ?', 
+  		"%#{search}%", "%#{search}%", "%#{search}%")
   end
 end
 
