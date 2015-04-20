@@ -10,18 +10,16 @@
 		%h1 Search Results
 		%div.row
 			%div.col-xs-6.col-sm-6.col-md-offset-3
-				= form_for search_path, method: :get do |f|
-					= text_field_tag :q, params[:q], :placeholder => "Enter search", class: 'form-control'
+				= form_for search_results_path, method: :get do |f|
+					= text_field_tag :query, params[:query], :placeholder => "Enter search", class: 'form-control'
 					= submit_tag "Search", name: nil
 					%br
+
 		%ul.events
-			%h2	Results for '#{params[:q]}'
-			- if @events.size != 0
-				- @events.each do |event|
-					%li
-						%div{:align => "left"}
-							= link_to event.title, controller: "events", action: "show", id: event._id
+			%h2	Results for '#{params[:query]}'
+			- if @events.present?
+				= render @events.sort_by &:date
 			- else 
 				%li
 					%div{:align => "center"}
-						No matches. Try pressing 'Search' again or try searching something else.
+						No matches. Retry the search or try a new search.

@@ -1,11 +1,17 @@
-= provide(:title, 'All events')
+= provide(:title, 'Events')
 %div.row
 	%div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
-		%h1 Events
+		%h1 All Events
+		%div{:style => "float: right"}
+			= link_to "Search for an event", search_results_path
+		%br
 		%ul.events
 			= render @events.sort_by &:date
 			%br
 			-if logged_in? && current_user.admin
 				= link_to "Add new event", new_event_path
+				
 			= will_paginate
+
+
 

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   post   'login'  => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
+  get    'search_results'           => 'events#search',        as: 'search_results'
   get    'events/:id/roster'        => 'events#show_roster',   as: 'roster_of_event'
   get    'events/:id/add_time_slot' => 'events#add_time_slot', as: 'add_time_slot_to_event'
 

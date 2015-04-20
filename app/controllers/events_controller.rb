@@ -7,6 +7,15 @@ class EventsController < ApplicationController
     @events = Event.paginate(page: params[:page])
   end
 
+  def search
+    @events = Event.all
+    if params[:query]
+      @events = Event.search(params[:query])
+    else
+      @events = []
+    end
+  end
+
   def show
     @event = Event.find params[:id]
     @time_slots = @event.time_slots.paginate(page: params[:page])
