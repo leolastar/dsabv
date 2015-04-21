@@ -24,6 +24,20 @@ When(/^I create a new event$/) do
   }
 end
 
+Given(/^an event for search is created$/) do
+  steps %{
+    When I follow "Add new event"
+    Then I should be on the new event page
+        And I fill in "Title" with "Flagship"
+        And I fill in "Date" with "12/12/2014"
+        And I fill in "Location" with "My abode"
+        And I fill in "Description" with "Bubbles will be everywhere"
+    When I press "Create new event"
+    Then I should be on the event page
+    When I follow "Back"
+  }
+end
+
 Then(/^I should see this new event$/) do
   steps %{
     Then I should be on the events page
@@ -80,6 +94,15 @@ Given(/an admin created an event$/) do
     Given I am login as an admin                
           And I am on the events page
           And an event is created
+      Then I logout as an admin
+  }
+end
+
+Given(/^an admin created an event for search$/) do
+  steps %{
+    Given I am login as an admin                
+          And I am on the events page
+          And an event for search is created
       Then I logout as an admin
   }
 end
