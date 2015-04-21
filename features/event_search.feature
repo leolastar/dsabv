@@ -11,6 +11,8 @@ Feature: Event Search
 	When I press "Search"
 	Then I should be on the events_search page
 		And I should see "Flagship"
+		And I should see "December 12, 2014"
+		And I should not see "No matches"
 
     Scenario: Search returns no results when event title does not exists
     Given an admin created an event for search
@@ -29,6 +31,8 @@ Feature: Event Search
 	When I press "Search"
 	Then I should be on the events_search page
 		And I should see "abode"
+		And I should see "December 12, 2014"
+		And I should not see "No matches"
 
     Scenario: Search returns no results when event location does not exists
     Given an admin created an event for search
@@ -47,6 +51,8 @@ Feature: Event Search
 	When I press "Search"
 	Then I should be on the events_search page
 		And I should see "bubbles"
+		And I should see "December 12, 2014"
+		And I should not see "No matches"
 
     Scenario: Search returns no results when event description does have search query  
     Given an admin created an event for search

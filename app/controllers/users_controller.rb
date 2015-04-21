@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if params[:query]
       @users = User.search(params[:query])
 
-      url = "/searchresults_users?utf8=✓&query=" + params[:query]
+      url = "/searchresults_users?query=" + params[:query]
       redirect_to url
     else
       @users = []

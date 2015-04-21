@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def self.search(search)
-    where('lower(name) LIKE ?', "%#{search.downcase}%")
+    where('lower(name) LIKE ? OR lower(email) LIKE ?', "%#{search.downcase}%", "%#{search.downcase}%")
   end
 
   def appointment(timeslot)

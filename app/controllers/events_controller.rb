@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     if params[:query]
       @events = Event.search(params[:query])
 
-      url = "/searchresults_events?utf8=✓&query=" + params[:query]
+      url = "/searchresults_events?query=" + params[:query]
       redirect_to url
     else
       @events = []
