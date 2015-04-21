@@ -1,7 +1,14 @@
-= provide(:title, 'All users')
+= provide(:title, 'Users')
 %div.row
 	%div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
 		%h1 All users
+		%div.row
+			%div.col-xs-6.col-sm-6.col-md-offset-3
+				= form_for users_search_path, method: :get do |f|
+					= text_field_tag :query, params[:query], :placeholder => "Enter search", class: 'form-control'
+					= submit_tag "Search", name: nil
+					%br
+		%br
 		%ul.users
 			= render @users.order('name ASC')
 		= will_paginate

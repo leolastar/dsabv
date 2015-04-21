@@ -5,6 +5,16 @@ class UsersController < ApplicationController
   before_action :staff_user,     only: [:checkin]
 
   def index
+    @users = User.all
+    if params[:query]
+      @users = User.search(params[:query])
+
+      url = "/searchresults_users?utf8=✓&query=" + params[:query]
+      redirect_to url
+    else
+      @users = []
+    end
+
     @users = User.paginate(page: params[:page])
   end
 
@@ -28,6 +38,15 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       render 'new'
+    end
+  end
+
+  def search
+    @users = User.all
+    if params[:query]
+      @users = User.search(params[:query])
+    else
+      @users = []
     end
   end
 
