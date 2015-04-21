@@ -71,6 +71,12 @@ Given(/^an user is signed up$/) do
   }
 end
 
+Given(/^an user for search is signed up$/) do
+  steps %{
+      When I am an user
+    }
+end
+
 When(/^I am an admin$/) do
 	if(!User.exists?(1))
   	@user = User.create(:admin => true, :id => 1, :activated => true, :name => "test", :email => "admin@admin.com", :password => "password", :address => "123 Main St");
