@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def self.search(search)
+    where('lower(name) LIKE ?', "%#{search.downcase}%")
+  end
+
   def appointment(timeslot)
     appointment = Appointment.where(user_id: self.id, time_slot_id: timeslot.id).first
   end
