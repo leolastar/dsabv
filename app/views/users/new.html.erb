@@ -9,28 +9,28 @@
            <%= render 'shared/error_messages', object: f.object %>
 
             <%= f.label :name %>
-            <%= f.text_field :name, class: 'form-control' %>
+            <%= f.text_field :name, :placeholder => "First Last", class: 'form-control' %>
 
             <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
+            <%= f.email_field :email, :placeholder => "ex. John@example.com", class: 'form-control' %>
 
             <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control' %>
+            <%= f.password_field :password, :placeholder => "Enter password", class: 'form-control' %>
 
             <%= f.label :password_confirmation, "Password Confirmation" %>
-            <%= f.password_field :password_confirmation, class: 'form-control' %>
+            <%= f.password_field :password_confirmation, :placeholder => "Repeat password", class: 'form-control' %>
 
             <%= f.label :phone, "Phone Number" %>
-            <%= f.telephone_field :phone, class: 'form-control' %>
+            <%= f.telephone_field :phone, :placeholder => "ex. (979) 000-0000", class: 'form-control' %>
 
             <%= f.label :address %>
-            <%= f.text_field :address, class: 'form-control' %>
+            <%= f.text_field :address, :placeholder => "Address, City, State, and Zip", class: 'form-control' %>
 
             <%= f.label :emergency_contact_name, 'Emergency Contact Name' %>
-            <%= f.text_field :emergency_contact_name, class: 'form-control' %>
+            <%= f.text_field :emergency_contact_name, :placeholder => "First Last", class: 'form-control' %>
 
             <%= f.label :emergency_contact_phone, 'Emergency Contact Phone' %>
-            <%= f.telephone_field :emergency_contact_phone, class: 'form-control' %>
+            <%= f.telephone_field :emergency_contact_phone, :placeholder => "ex. (979) 000-0000", class: 'form-control' %>
 
             <%= f.submit "Create my account", class: "btn btn-primary home-page" %>
           </div>
