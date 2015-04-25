@@ -8,13 +8,13 @@ Feature: Register for an event
         And an admin creates a timeslot
         And I am login as an user
         And I am on the event page
-    Then I should see "register"
-    When I follow "register"
+    Then I should see "Register"
+    When I follow "Register"
     Then I should be on my registrations page
         And I should see "Test event"
     When I follow "Test event"
     Then I should be on the event page
-        And I should see "registered"
+        And I should see "Registered"
 
     Scenario: Check users in as an admin
     Given an admin created an event

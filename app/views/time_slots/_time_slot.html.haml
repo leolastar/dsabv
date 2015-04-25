@@ -10,8 +10,8 @@
     - if logged_in? && current_user.admin
       = link_to "Delete", { action: :destroy, controller: :time_slots, id: time_slot.id, event_id: time_slot.event.id }, method: :delete, data: { confirm: "Are you sure?" }
     - elsif logged_in? && current_user.time_slots.exists?(time_slot.id)
-      registered
+      Registered
     - elsif time_slot.capacity_left > 0
       = link_to "Register", { action: :register, time_slot_id: time_slot.id }, { method: :put }
     - else
-      full
+      Full

@@ -121,13 +121,13 @@ Given(/^an user registers the event$/) do
   steps %{
     Given I am login as an user
         And I am on the event page
-    Then I should see "register"
-    When I follow "register"
+    Then I should see "Register"
+    When I follow "Register"
     Then I should be on my registrations page
         And I should see "Test event"
     When I follow "Test event"
     Then I should be on the event page
-        And I should see "registered"
+        And I should see "Registered"
         And I logout as an user
   }
 end

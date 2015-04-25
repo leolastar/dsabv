@@ -11,12 +11,12 @@ Feature: Staff can check people in
     When I follow "Users"
     Then I should see "admin@admin.com"
         And I should see "test@test.com"
-        And I should not see "remove staff role"
-        And I should see "add staff role"
-    When I follow "add staff role"
+        And I should not see "Remove staff role"
+        And I should see "Add staff role"
+    When I follow "Add staff role"
     Then I should be on the users page
-        And I should see "remove staff role"
-        And I should not see "add staff role"
+        And I should see "Remove staff role"
+        And I should not see "Add staff role"
 
     Scenario: Remove the staff role from a user
     Given I am login as an admin
@@ -25,12 +25,12 @@ Feature: Staff can check people in
         And I made him a staff member
     Then I should see "admin@admin.com"
         And I should see "test@test.com"
-        And I should see "remove staff role"
-        And I should not see "add staff role"
-    When I follow "remove staff role"
+        And I should see "Remove staff role"
+        And I should not see "Add staff role"
+    When I follow "Remove staff role"
     Then I should be on the users page
-        And I should see "add staff role"
-        And I should not see "remove staff role"
+        And I should see "Add staff role"
+        And I should not see "Remove staff role"
 
     Scenario: Users can't view all the users
     Given I am login as an user

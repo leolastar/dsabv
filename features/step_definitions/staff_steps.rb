@@ -29,7 +29,7 @@ end
 
 Given(/^I made him a staff member$/) do
 	steps %{
-		When I follow "add staff role"
+		When I follow "Add staff role"
 	    Then I should be on the users page
 	}
 end
@@ -47,7 +47,7 @@ Then(/^an admin removes staff role$/) do
 	steps %{
 	Given I am login as an admin
     Then I go to the users page
-        And I follow "remove staff role"
+        And I follow "Remove staff role"
     Then I logout as an admin
 	}
 end
