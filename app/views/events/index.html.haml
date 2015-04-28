@@ -3,6 +3,11 @@
 	%div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
 		%h1 All Events
 		%div.row
+			- if logged_in? && current_user.admin?
+				= link_to "Edit Text", { action: :edit, controller: :articles, id: 3 }, class: "btn btn-primary home-page"
+			%div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
+				%div
+					= @article.text.html_safe
 			%div.col-xs-6.col-sm-6.col-md-offset-3
 				= form_for events_search_path, method: :get do |f|
 					= text_field_tag :query, params[:query], :placeholder => "Enter search", class: 'form-control'
