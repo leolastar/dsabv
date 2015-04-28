@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @buddy_walk.title %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @buddy_walk.place %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @buddy_walk.description %>
+</p>
+
+<%= link_to 'Edit', edit_buddy_walk_path(@buddy_walk) %> |
+<%= link_to 'Back', buddy_walks_path %>

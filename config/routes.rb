@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :buddy_walks
+
   get 'articles/edit'
 
   get 'articles/update'

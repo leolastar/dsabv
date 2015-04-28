@@ -1,0 +1,29 @@
+<h1>Listing buddy_walks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Place</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @buddy_walks.each do |buddy_walk| %>
+      <tr>
+        <td><%= buddy_walk.title %></td>
+        <td><%= buddy_walk.place %></td>
+        <td><%= buddy_walk.description %></td>
+        <td><%= link_to 'Show', buddy_walk %></td>
+        <td><%= link_to 'Edit', edit_buddy_walk_path(buddy_walk) %></td>
+        <td><%= link_to 'Destroy', buddy_walk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Buddy walk', new_buddy_walk_path %>
