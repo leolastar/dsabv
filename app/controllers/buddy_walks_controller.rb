@@ -4,6 +4,7 @@ class BuddyWalksController < ApplicationController
   before_action :staff_user,     only: [:show_roster]
 
   def index
+    @article = Article.find_by_id(4)
     @events = Event.all
     if params[:query]
       @events = Event.search(params[:query])
