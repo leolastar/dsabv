@@ -9,7 +9,7 @@ Feature: Admin's editable text boxs
     	And I should see "test 2"
     	And I should not see "Edit Text"
     When I go to the edit text page
-    	And I should be on the home page
+    Then I should be on the home page
 
 	Scenario: Edit text box not visible to user                      
     Given I am login as an user                
