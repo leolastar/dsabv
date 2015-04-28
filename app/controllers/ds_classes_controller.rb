@@ -5,17 +5,17 @@ class DsClassesController < ApplicationController
 
   def index
     @article = Article.find_by_id(5)
-    @events = Event.all
+    @ds_classes = DsClass.all
     if params[:query]
-      @events = Event.search(params[:query])
+      @ds_classes = DsClass.search(params[:query])
 
       url = "/searchresults_events?query=" + params[:query]
       redirect_to url
     else
-      @events = []
+      @ds_classes = []
     end
 
-    @events = Event.paginate(page: params[:page])
+    @ds_classes = DsClass.paginate(page: params[:page])
   end
 
   def search

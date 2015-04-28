@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
   get    'searchresults_events'     => 'events#search',        as: 'events_search'
   get    'searchresults_users'      => 'users#search',         as: 'users_search'
+  get    'searchresults_classes'      => 'ds_classes#search',  as: 'classes_search'
   
   get    'events/:id/roster'        => 'events#show_roster',   as: 'roster_of_event'
   get    'events/:id/add_time_slot' => 'events#add_time_slot', as: 'add_time_slot_to_event'

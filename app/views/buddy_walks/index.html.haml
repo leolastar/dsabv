@@ -10,7 +10,7 @@
           = @article.text.html_safe
     %br
     %ul.events
-      = render @events.sort_by &:date
+      = render @buddy_walks.sort_by &:date
       %br
       -if logged_in? && current_user.admin
         = link_to "Add new event", new_event_path

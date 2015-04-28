@@ -5,17 +5,17 @@ class BuddyWalksController < ApplicationController
 
   def index
     @article = Article.find_by_id(4)
-    @events = Event.all
+    @buddy_walks = BuddyWalk.all
     if params[:query]
-      @events = Event.search(params[:query])
+      @buddy_walks = BuddyWalk.search(params[:query])
 
       url = "/searchresults_events?query=" + params[:query]
       redirect_to url
     else
-      @events = []
+      @buddy_walks = []
     end
 
-    @events = Event.paginate(page: params[:page])
+    @buddy_walks = BuddyWalk.paginate(page: params[:page])
   end
 
   def search
