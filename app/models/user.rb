@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :appointments
   has_many :time_slots, through: :appointments
   has_many :events, through: :time_slots
+  has_many :buddy_walks, through: :time_slots
+  has_many :ds_classes, through: :time_slots
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :ds_classes
+
   resources :buddy_walks
 
   get 'articles/edit'

@@ -1,4 +1,4 @@
-class BuddyWalksController < ApplicationController
+class DsClassesController < ApplicationController
   before_action :logged_in_user, only: [:register]
   before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_time_slot]
   before_action :staff_user,     only: [:show_roster]
@@ -103,8 +103,7 @@ class BuddyWalksController < ApplicationController
                                     :description)
     end
 
-    def buddy_walk_params
-      params.require(:event).permit(:title, :date, :place, :description)
+    def ds_class_params
+      params.require(:ds_class).permit(:title, :place, :description, :start_time, :end_time, :start_date, :end_date)
     end
-
 end

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @ds_class.title %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @ds_class.place %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ds_class.description %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @ds_class.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @ds_class.end_time %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @ds_class.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @ds_class.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_ds_class_path(@ds_class) %> |
+<%= link_to 'Back', ds_classes_path %>
