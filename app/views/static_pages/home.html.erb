@@ -3,6 +3,22 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 center jumbotron">
     <h1>Event Registration</h1>
+    <h3>
+    <table width = "100%">
+    <tr>
+    <td align="left">
+    <%= link_to "Volunteering", events_path %>
+    </td>    
+    <td align="center">
+    <%= link_to "Classes", ds_classes_path %>
+    </td>
+    <td align="right">
+    <%= link_to "Buddy Walk", buddy_walks_path %>
+    </td>
+    </tr>
+    </table>
+    </h3>
+    <p></p>
     <% unless logged_in? %>
       <%= link_to "Sign up", signup_path, class: "btn btn-primary home-page" %>
       &nbsp
