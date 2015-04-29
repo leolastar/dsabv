@@ -84,15 +84,19 @@ class EventsController < ApplicationController
 
   def register
     time_slot = TimeSlot.find(params[:time_slot_id])
+    if current_user.time_slots.include?(time_slot)
+      redirect_to registrations_user_path(current_user)
+    else
 
-    time_slot.remaining_capacity -= 1
-    time_slot.save
+      time_slot.remaining_capacity -= 1
+      time_slot.save
 
-    EventMailer.event_registration(current_user, time_slot).deliver
+      EventMailer.event_registration(current_user, time_slot).deliver
 
-    current_user.time_slots << time_slot
-    flash[:success] = "You have successfully registered the event."
-    redirect_to registrations_user_path(current_user)
+      current_user.time_slots << time_slot
+      flash[:success] = "You have successfully registered the event."
+      redirect_to registrations_user_path(current_user)
+    end
   end
 
   private
