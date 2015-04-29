@@ -18,6 +18,20 @@ Given(/^I visit the home page$/) do
   visit path_to("the home page")
 end
 
+Given(/^I visit the buddy walk page$/) do
+  if(Article.find_by_id(4) == nil)
+    Article.create(:text => "test 4", :id => 4)
+  end
+  visit buddy_walks_path
+end
+
+Given(/^I visit the classes page$/) do
+  if(Article.find_by_id(5) == nil)
+    Article.create(:text => "test 5", :id => 5)
+  end
+  visit ds_classes_path
+end
+
 Given(/^I am login as an admin$/) do
   steps %{
     Given I visit the home page
