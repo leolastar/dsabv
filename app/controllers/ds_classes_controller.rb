@@ -6,10 +6,10 @@ class DsClassesController < ApplicationController
   def index
     @article = Article.find_by_id(5)
     @ds_classes = DsClass.all
+
     if params[:query]
       @ds_classes = DsClass.search(params[:query])
-
-      url = "/searchresults_events?query=" + params[:query]
+      url = "/searchresults_classes?query=" + params[:query]
       redirect_to url
     else
       @ds_classes = []
@@ -19,67 +19,68 @@ class DsClassesController < ApplicationController
   end
 
   def search
-    @events = Event.all
+    @ds_classes = DsClass.all
     if params[:query]
-      @events = Event.search(params[:query])
+      @ds_classes = DsClass.search(params[:query])
     else
-      @events = []
+      @ds_classes = []
     end
   end
 
   def show
-    @event = Event.find params[:id]
-    @time_slots = @event.time_slots.paginate(page: params[:page])
+    @ds_class = DsClass.find params[:id]
+    @time_slots = @ds_class.time_slots.paginate(page: params[:page])
   end
 
   def new
-    @event = Event.new
+    @ds_class = DsClass.new
   end
 
   def create
-    @event = Event.new(event_params)
-    if @event.save
-      flash[:success] = "New event has been created."
-      redirect_to event_path(@event)
+    @ds_class = DsClass.new(ds_class_params)
+    if @ds_class.save
+      flash[:success] = "New class has been created."
+      redirect_to ds_class_path(@ds_class)
     else
       render 'new'
     end
   end
 
   def edit
-    @event = Event.find params[:id]
+    @ds_class = DsClass.find params[:id]
   end
 
   def update
-    @event = Event.find params[:id]
-    if @event.update_attributes(event_params)
-      flash[:success] = "Event updated."
-      redirect_to @event
+    @ds_class = DsClass.find params[:id]
+    if @ds_class.update_attributes(ds_class_params)
+      flash[:success] = "Class updated."
+      redirect_to @ds_class
     else
       render 'edit'
     end
   end
 
   def destroy
-    @event = Event.find params[:id]
-    @event.time_slots.each do |time_slot|
+    @ds_class = DsClass.find params[:id]
+    @ds_class.time_slots.each do |time_slot|
       time_slot.users.each do |user|
         EventMailer.event_cancellation(user, time_slot).deliver
       end
     end
-    @event.destroy
-    flash[:flash] = "Event '#{@event.title}' deleted."
-    redirect_to events_path
+
+    @ds_class.destroy
+    flash[:success] = "Class '#{@ds_class.title}' deleted."
+    redirect_to ds_classes_path
   end
 
   def add_time_slot
-    @event = Event.find params[:id]
-    @time_slots = @event.time_slots.paginate(page: params[:page])
-    @time_slot = @event.time_slots.build
+    @ds_class = DsClass.find params[:id]
+    @time_slots = @ds_class.time_slots.paginate(page: params[:page])
+    @time_slot = @ds_class.time_slots.build
   end
 
   def show_roster
-    @event = Event.find(params[:id])
+    @ds_class = DsClass.find(params[:id])
   end
 
   def register
@@ -91,20 +92,20 @@ class DsClassesController < ApplicationController
     EventMailer.event_registration(current_user, time_slot).deliver
 
     current_user.time_slots << time_slot
-    flash[:success] = "You have successfully registered the event."
+    flash[:success] = "You have successfully registered the class."
     redirect_to registrations_user_path(current_user)
   end
 
   private
 
-    def event_params
-      params.require(:event).permit(:title,
-                                    :date,
-                                    :place,
-                                    :description)
-    end
-
     def ds_class_params
-      params.require(:ds_class).permit(:title, :place, :description, :start_time, :end_time, :start_date, :end_date)
+      params.require(:ds_class).permit(:title,
+                                    :place,
+                                    :description,
+                                    :start_time,
+                                    :end_time,
+                                    :start_date,
+                                    :end_date)
     end
 end
+

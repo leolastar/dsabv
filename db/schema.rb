@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150428152403) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ds_class_id"
   end
 
   create_table "users", force: true do |t|

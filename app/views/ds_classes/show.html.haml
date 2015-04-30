@@ -1,39 +1,35 @@
-<p id="notice"><%= notice %></p>
+- provide(:title, @ds_class.title)
+%div.row
+  %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
+    %h1 #{@ds_class.title}
+    %div.row
+      %div.col-xs-12.col-sm-8
+        %div.event_info
+          %h3 Date
+          #{@ds_class.start_date} - #{@ds_class.end_date}
 
-<p>
-  <strong>Title:</strong>
-  <%= @ds_class.title %>
-</p>
+          %h3 Location
+          = @ds_class.place
 
-<p>
-  <strong>Place:</strong>
-  <%= @ds_class.place %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @ds_class.description %>
-</p>
-
-<p>
-  <strong>Start time:</strong>
-  <%= @ds_class.start_time %>
-</p>
-
-<p>
-  <strong>End time:</strong>
-  <%= @ds_class.end_time %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @ds_class.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @ds_class.end_date %>
-</p>
-
-<%= link_to 'Edit', edit_ds_class_path(@ds_class) %> |
-<%= link_to 'Back', ds_classes_path %>
+          %h3 Description
+          = @ds_class.description
+          %p
+        - if logged_in? && current_user.staff
+          = link_to "Roster", roster_of_ds_class_path(@ds_class)
+          |
+        - if logged_in? && current_user.admin
+          = link_to "Edit", edit_ds_class_path(@ds_class)
+          |
+          = link_to "Delete", ds_class_path(@ds_class), method: :delete, data: { confirm: "Do you want to delete this class?" }
+          |
+          = link_to "Roster", roster_of_ds_class_path(@ds_class)
+          -#|
+          -#= link_to "Add time slot", add_time_slot_to_ds_class_path
+          |
+        = link_to "Back", ds_classes_path
+      -#%div.col-xs-12.col-sm-4
+        -#%h6 Time
+        -#- if @ds_class.time_slots.any?
+          -#%ol.time_slots
+            -#= render @time_slots
+          -#= will_paginate @time_slots
