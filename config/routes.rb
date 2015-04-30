@@ -58,8 +58,8 @@ Rails.application.routes.draw do
   get    'buddy_walks/:id/roster'        => 'buddy_walks#show_roster',   as: 'roster_of_buddy_walks'
   get    'buddy_walks/:id/add_time_slot' => 'buddy_walks#add_time_slot', as: 'add_time_slot_to_buddy_walks'
 
-  get    'ds_classes/:id/roster'        => 'ds_classes#show_roster',   as: 'roster_of_ds_classes'
-  get    'ds_classes/:id/add_time_slot' => 'ds_classes#add_time_slot', as: 'add_time_slot_to_ds_classes'
+  get    'ds_classes/:id/roster'        => 'ds_classes#show_roster',   as: 'roster_of_ds_class'
+  get    'ds_classes/:id/add_time_slot' => 'ds_classes#add_time_slot', as: 'add_time_slot_to_ds_class'
 
   resources :users do
     member do
