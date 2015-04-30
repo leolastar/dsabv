@@ -146,3 +146,17 @@ Then(/^the correct date is shown$/) do
       And I should see "December 12, 2014"
   }
 end
+
+Given(/^an user registers for this event$/) do
+  steps %{
+    Given I am on the event page
+    Then I should see "Register"
+    When I follow "Register"
+    Then I should be on my registrations page
+        And I should see "Test event"
+    When I follow "Test event"
+    Then I should be on the event page
+        And I should see "Registered"
+        And I should see "Unregister"
+  }
+end
