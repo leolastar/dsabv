@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :logged_in_user, only: [:register]
+  before_action :logged_in_user, only: [:register, :unregister]
   before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_time_slot]
   before_action :staff_user,     only: [:show_roster]
 
@@ -97,6 +97,16 @@ class EventsController < ApplicationController
       flash[:success] = "You have successfully registered the event."
       redirect_to registrations_user_path(current_user)
     end
+  end
+
+  def unregister
+    time_slot = TimeSlot.find(params[:time_slot_id])
+    time_slot.remaining_capacity += 1
+    time_slot.save
+    current_user.appointment(time_slot).destroy
+    current_user.time_slots.delete(time_slot)
+    flash[:success] = "You have successfully unregistered for the event."
+    redirect_to registrations_user_path(current_user)
   end
 
   private

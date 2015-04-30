@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :time_slots, only: [:create, :destroy]
     member do
       put 'register'
+      put 'unregister'
     end
   end
 

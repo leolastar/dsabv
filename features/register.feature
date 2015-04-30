@@ -15,6 +15,23 @@ Feature: Register for an event
     When I follow "Test event"
     Then I should be on the event page
         And I should see "Registered"
+        And I should see "Unregister"
+
+    Scenario: Unregister for an event as a user
+    Given an admin created an event
+        And an admin creates a timeslot
+        And I am login as an user
+        And an user registers for this event
+    Then I should be on the event page
+        And I should see "Registered"
+        And I should see "Unregister"
+    When I follow "Unregister"
+    Then I should be on my registrations page
+    Then I go to the event page
+    Then I should see "Register"
+        And I should not see "Unregister"
+        And I should not see "Registered"
+
 
     Scenario: Check users in as an admin
     Given an admin created an event
