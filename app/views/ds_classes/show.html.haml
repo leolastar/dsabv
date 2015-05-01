@@ -12,7 +12,7 @@
           = @ds_class.place
 
           %h3 Description
-          = @ds_class.description
+          = @ds_class.description.html_safe
           %p
         - if logged_in? && current_user.staff
           = link_to "Roster", roster_of_ds_class_path(@ds_class)

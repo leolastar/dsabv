@@ -12,7 +12,7 @@
           = @event.place
 
           %h3 Description
-          = @event.description
+          = @event.description.html_safe
           %p
         - if logged_in? && current_user.staff
           = link_to "Roster", roster_of_event_path(@event)

@@ -11,6 +11,6 @@
 				= @event.place
 			%li
 				Description:
-				= @event.description
+				= @event.description.html_safe
 
 		= link_to "Back", events_path

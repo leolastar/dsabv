@@ -11,7 +11,7 @@
 				= @ds_class.place
 			%li
 				Description:
-				= @ds_class.description
+				= @ds_class.description.html_safe
 
 		= link_to "Back", ds_classes_path
 
