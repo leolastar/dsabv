@@ -5,43 +5,45 @@
     <h1>Event Registration</h1>
     
     <div class="hidden-xs">
-      <div class="col-sm-4">
-        <%= link_to "Volunteer", events_path, class: "btn btn-info btn-block home-page" %>
-      </div>
-      <div class="col-sm-4">
-        <%= link_to "Classes", ds_classes_path, class: "btn btn-info btn-block home-page" %>
-      </div>
-      <div class="col-sm-4">
-        <%= link_to "Buddy Walk", buddy_walks_path, class: "btn btn-info btn-block home-page" %>
-      </div>
-      <div class="col-xs-12"><p></p></div>
-      <% unless logged_in? %>
-         <div class="col-sm-3 col-sm-offset-3">
-          <%= link_to "Sign up", signup_path, class: "btn btn-primary btn-block home-page" %>
-        </div>
-        <div class="col-sm-3">
-          <%= link_to "Log in", login_path, class: "btn btn-primary btn-block home-page" %>
-        </div>  
-      <% end %>
+    <div align="center">
+      &#8201
+      &#8201
+      <%= link_to "Volunteer", events_path, class: "btn btn-info btn-md home-page" %>
+      &nbsp
+      <%= link_to "Classes", ds_classes_path, class: "btn btn-info btn-md home-page" %>
+      &nbsp
+      <%= link_to "Buddy Walk", buddy_walks_path, class: "btn btn-info btn-md home-page" %>
     </div>
+    <% unless logged_in? %>
+    <p></p>
+    <div align="center">
+        <%= link_to "Sign up", signup_path, class: "btn btn-primary btn-md home-page" %>
+        &nbsp
+        <%= link_to "Log in", login_path, class: "btn btn-primary btn-md home-page" %>
+        &nbsp
+    </div>
+    <% end %>
+    </div>
+
     <div class="visible-xs-inline">
-      <div class="col-xs-4">
+      <div align="center">
+        &#8201
+        &#8201
         <%= link_to "Volunteer", events_path, class: "btn btn-info btn-sm home-page" %>
-      </div>
-      <div class="col-xs-4">
+        &nbsp
         <%= link_to "Classes", ds_classes_path, class: "btn btn-info btn-sm home-page" %>
-      </div>
-      <div class="col-xs-4">
+        &nbsp
         <%= link_to "Buddy Walk", buddy_walks_path, class: "btn btn-info btn-sm home-page" %>
       </div>
       <div class="col-xs-12"><p></p></div>
       <% unless logged_in? %>
-         <div class="col-xs-3 col-xs-offset-3">
-          <%= link_to "Sign up", signup_path, class: "btn btn-primary btn-sm home-page" %>
-        </div>
-        <div class="col-xs-3">
-          <%= link_to "Log in", login_path, class: "btn btn-primary btn-sm home-page" %>
-        </div>  
+        <p></p>
+         <div align="center">
+        <%= link_to "Sign up", signup_path, class: "btn btn-primary btn-sm home-page" %>
+        &nbsp
+        <%= link_to "Log in", login_path, class: "btn btn-primary btn-sm home-page" %>
+        &nbsp
+      </div>
       <% end %>
     </div>
   </div>
