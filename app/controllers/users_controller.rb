@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
   def show_registrations
     user = User.find(params[:id])
-    @registrations = user.time_slots.sort_by{|s| s.start_time}
+    @registrations = user.time_slots
   end
 
   def checkin
