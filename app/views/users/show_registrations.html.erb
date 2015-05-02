@@ -7,7 +7,7 @@
         <th class="col-md-6">Event</th>
         <th class="col-md-4">Time</th>
       </tr>
-      <% @registrations.each do |registration| %>
+      <% @registrations.sort.each do |registration| %>
         <tr>
           <td class="col-md-6">
             <%= link_to registration.event.title, registration.event %>
