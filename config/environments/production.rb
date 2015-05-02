@@ -60,15 +60,15 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'vol-sys.herokuapp.com'
+  host = 'dsabv.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.smtp_settings = {
     :address => "smtp.gmail.com",
-    :port => "587",
+    :port => 587,
     :domain => "gmail.com",
     :authentication => "plain",
-    :user_name => "dsabv.noreply@gmail.com",
-    :password => "dsabvtest",
+    :user_name => "registration@dsabv.org",
+    :password => "2015DSABVevents",
     :enable_starttls_auto => true
  }
 

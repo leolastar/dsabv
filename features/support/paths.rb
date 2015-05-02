@@ -17,12 +17,32 @@ module NavigationHelpers
       then root_path
     when /the edit text page/
       then edit_article_path(:id => 1)
+    when /the events edit text page/
+      then edit_article_path(:id => 3)
+    when /the buddy walk edit text page/
+      then edit_article_path(:id => 4)
+    when /the classes edit text page/
+      then edit_article_path(:id => 5)
     when /the login page/
       then login_path
     when /my user page/
       then user_path(:id => 2)
     when /my admin page/
       then user_path(:id => 1)
+    when /the events page/
+      then 
+        if(Article.find_by_id(3) == nil)
+          Article.create(:text => "test 3", :id => 3)
+        end
+        events_path
+    when /the event page/
+      then "/events/1"
+    when /the add time slot page/
+      then add_time_slot_to_event_path(1)
+    when /the events roster/
+      then roster_of_event_path(1)
+    when /my registrations page/
+      then registrations_user_path(2)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

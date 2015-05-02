@@ -1,0 +1,33 @@
+:css
+	h2{
+		font-size: 30px
+	}
+
+= provide(:title, 'Classes Search Results')
+%div.row
+	%div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
+		%h1 Search for Classes
+		%div.row
+			%div.col-xs-6.col-sm-6.col-md-offset-3
+				= form_for classes_search_path, method: :get do |f|
+					= text_field_tag :query, params[:query], :placeholder => "Enter search", class: 'form-control'
+					= submit_tag "Search", name: nil
+					%br
+
+		%ul.events
+			%h2	Results for '#{params[:query]}'
+			%div{:align => 'right'}
+				= link_to "Back to all classes", ds_classes_path
+			%br
+
+			- if @ds_classes.present?
+				= render @ds_classes.sort_by &:start_date
+			- else 
+				%li
+					%div{:align => "center"}
+						No matches. Retry the search or try a new search.
+
+		%br
+		%br
+		%div{:align => 'right'}
+			= link_to "Back to all classes", ds_classes_path

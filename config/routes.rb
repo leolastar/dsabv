@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :ds_classes
+
+  resources :buddy_walks
+
   get 'articles/edit'
 
   get 'articles/update'
@@ -15,12 +19,30 @@ Rails.application.routes.draw do
     resources :time_slots, only: [:create, :destroy]
     member do
       put 'register'
+      put 'unregister'
+    end
+  end
+
+  resources :buddy_walks do
+    resources :time_slots, only: [:create, :destroy]
+    member do
+      put 'register'
+    end
+  end
+
+  resources :ds_classes do
+    resources :time_slots, only: [:create, :destroy]
+    member do
+      put 'register'
     end
   end
 
   get    'home'   => 'static_pages#home'
   get    'calendar' => 'static_pages#calendar'
   get    'edit_text_box' => 'static_pages#edit_text_box'
+  get    'checkin' => 'users#checkin'
+  get    'give_staff_role' => 'users#give_staff_role'
+  get    'remove_staff_role' => 'users#remove_staff_role'
 
   get    'signup' => 'users#new'
   get    'login'  => 'sessions#new'
@@ -29,8 +51,18 @@ Rails.application.routes.draw do
 
   get     'registration_confirmation'=> 'users#registration_confirmation', as: 'reg'
 
+  get    'searchresults_events'     => 'events#search',        as: 'events_search'
+  get    'searchresults_users'      => 'users#search',         as: 'users_search'
+  get    'searchresults_classes'      => 'ds_classes#search',  as: 'classes_search'
+  
   get    'events/:id/roster'        => 'events#show_roster',   as: 'roster_of_event'
   get    'events/:id/add_time_slot' => 'events#add_time_slot', as: 'add_time_slot_to_event'
+
+  get    'buddy_walks/:id/roster'        => 'buddy_walks#show_roster',   as: 'roster_of_buddy_walks'
+  get    'buddy_walks/:id/add_time_slot' => 'buddy_walks#add_time_slot', as: 'add_time_slot_to_buddy_walks'
+
+  get    'ds_classes/:id/roster'        => 'ds_classes#show_roster',   as: 'roster_of_ds_class'
+  get    'ds_classes/:id/add_time_slot' => 'ds_classes#add_time_slot', as: 'add_time_slot_to_ds_class'
 
   resources :users do
     member do

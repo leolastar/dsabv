@@ -1,0 +1,27 @@
+- provide(:title, @ds_class.title)
+%div.row
+  %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
+    %h1 #{@ds_class.title}
+    %div.row
+      %div.col-xs-12.col-sm-8
+        %div.event_info
+          %h3 Date
+          #{@ds_class.start_date} - #{@ds_class.end_date}
+
+          %h3 Location
+          = @ds_class.place
+
+          %h3 Description
+          = @ds_class.description.html_safe
+          %p
+        - if logged_in? && current_user.staff
+          = link_to "Roster", roster_of_ds_class_path(@ds_class)
+          |
+        - if logged_in? && current_user.admin
+          = link_to "Edit", edit_ds_class_path(@ds_class)
+          |
+          = link_to "Delete", ds_class_path(@ds_class), method: :delete, data: { confirm: "Do you want to delete this class?" }
+          |
+          = link_to "Roster", roster_of_ds_class_path(@ds_class)
+          |
+        = link_to "Back", ds_classes_path

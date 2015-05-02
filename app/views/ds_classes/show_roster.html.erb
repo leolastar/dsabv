@@ -1,0 +1,17 @@
+<% provide(:title, 'Roster') %>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 jumbotron">
+    <% if logged_in? && (current_user.admin || current_user.staff) %>
+      <h1><%= @ds_class.title %></h1>
+      <ul class="col-xs-12 col-md-12" id="details">
+        <%= @ds_class.start_date %><br>
+        <%= @ds_class.end_date %><br>
+        <%= @ds_class.place %><br><br>
+        <%= link_to "Back", ds_class_path(@ds_class) %>
+      </ul>
+      <% else %>
+        Access Denied
+      <% end %>
+    </div>
+  </div>
+

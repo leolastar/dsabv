@@ -11,10 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405232100) do
+ActiveRecord::Schema.define(version: 20150430012819) do
+
+  create_table "appointments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "time_slot_id"
+    t.boolean  "is_checkedin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "articles", force: true do |t|
     t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buddy_walks", force: true do |t|
+    t.string   "title"
+    t.string   "place"
+    t.text     "description"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ds_classes", force: true do |t|
+    t.string   "title"
+    t.string   "place"
+    t.text     "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.date     "start_date"
+    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,11 +65,7 @@ ActiveRecord::Schema.define(version: 20150405232100) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "time_slots_users", force: true do |t|
-    t.integer "time_slot_id"
-    t.integer "user_id"
+    t.integer  "ds_class_id"
   end
 
   create_table "users", force: true do |t|
@@ -61,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150405232100) do
     t.datetime "event_register_email_notify"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "staff",                       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

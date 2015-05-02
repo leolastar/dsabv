@@ -2,19 +2,21 @@
 %div.row
   %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
     %h1 Edit Event
-    = form_for(@event) do |f|
-      = render 'shared/error_messages', object: f.object
+    %div.row
+      %div.col-xs-12.col-md-6.col-md-offset-3
+        = form_for(@event) do |f|
+          = render 'shared/error_messages', object: f.object
 
-      = f.label :title
-      = f.text_field :title, class: 'form-control'
+          = f.label :title
+          = f.text_field :title, class: 'form-control'
 
-      = f.label :date
-      = f.date_field :date, class: 'form-control'
+          = f.label :date, "Date"
+          = f.text_field :date, class: "datepicker", :value => @event.date.strftime("   %B %_d, %Y"), :placeholder => "Ex: September 2, 2015"
 
-      = f.label :place
-      = f.text_field :place, class: 'form-control'
+          = f.label :place, "Location"
+          = f.text_field :place, class: 'form-control', :placeholder => "Enter location"
 
-      = f.label :description
-      = f.text_area :description, class: 'form-control'
+          = f.label :description
+          = f.text_area :description, class: 'form-control', :placeholder => "Enter description"
 
-      = f.submit 'Save', class: 'btn btn-primary'
+          = f.submit 'Save', class: 'btn btn-primary home-page'

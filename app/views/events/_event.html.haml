@@ -1,8 +1,10 @@
 %li
-  #{event.date}:
-  = link_to event.title, event
-  - if logged_in? && current_user.admin?
-    |
-    = link_to "edit", edit_event_path(event)
-    |
-    = link_to "delete", event, method: :delete, data: { confirm: "You sure?" } 
+  %div{:align => "left"}
+    #{event.date}:
+    %div{:align => "center"}
+      = link_to event.title, event
+      - if logged_in? && current_user.admin?
+        %div{:style => "float: right"}
+          = link_to "Edit", edit_event_path(event)
+          |
+          = link_to "Delete", event, method: :delete, data: { confirm: "You sure?" } 

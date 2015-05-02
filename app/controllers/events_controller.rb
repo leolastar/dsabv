@@ -1,10 +1,30 @@
 class EventsController < ApplicationController
-  before_action :logged_in_user, only: [:register]
-  before_action :admin_user,     only: [:edit, :update, :destroy, :show_roster, :add_time_slot]
+  before_action :logged_in_user, only: [:register, :unregister]
+  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_time_slot]
+  before_action :staff_user,     only: [:show_roster]
 
   def index
-    # Pagination
+    @article = Article.find_by_id(3)
+    @events = Event.all
+    if params[:query]
+      @events = Event.search(params[:query])
+
+      url = "/searchresults_events?query=" + params[:query]
+      redirect_to url
+    else
+      @events = []
+    end
+
     @events = Event.paginate(page: params[:page])
+  end
+
+  def search
+    @events = Event.all
+    if params[:query]
+      @events = Event.search(params[:query])
+    else
+      @events = []
+    end
   end
 
   def show
@@ -48,7 +68,7 @@ class EventsController < ApplicationController
       end
     end
     @event.destroy
-    flash[:notice] = "Event '#{@event.title}' deleted."
+    flash[:flash] = "Event '#{@event.title}' deleted."
     redirect_to events_path
   end
 
@@ -64,14 +84,28 @@ class EventsController < ApplicationController
 
   def register
     time_slot = TimeSlot.find(params[:time_slot_id])
+    if current_user.time_slots.include?(time_slot)
+      redirect_to registrations_user_path(current_user)
+    else
 
-    time_slot.remaining_capacity -= 1
+      time_slot.remaining_capacity -= 1
+      time_slot.save
+
+      EventMailer.event_registration(current_user, time_slot).deliver
+
+      current_user.time_slots << time_slot
+      flash[:success] = "You have successfully registered the event."
+      redirect_to registrations_user_path(current_user)
+    end
+  end
+
+  def unregister
+    time_slot = TimeSlot.find(params[:time_slot_id])
+    time_slot.remaining_capacity += 1
     time_slot.save
-
-    EventMailer.event_registration(current_user, time_slot).deliver
-
-    current_user.time_slots << time_slot
-    flash[:success] = "You have successfully registered the event."
+    current_user.appointment(time_slot).destroy
+    current_user.time_slots.delete(time_slot)
+    flash[:success] = "You have successfully unregistered for the event."
     redirect_to registrations_user_path(current_user)
   end
 

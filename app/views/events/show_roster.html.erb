@@ -1,7 +1,7 @@
 <% provide(:title, 'Roster') %>
-<% if logged_in? && current_user.admin %>
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 jumbotron">
+    <% if logged_in? && (current_user.admin || current_user.staff) %>
       <h1><%= @event.title %></h1>
       <ul class="col-xs-12 col-md-12" id="details">
         <%= @event.date %><br>
@@ -10,20 +10,22 @@
           <li><%= time_slot.start_time.strftime("%I:%M %p") %> -- <%= time_slot.end_time.strftime("%I:%M %p") %></li>
           <table class="table">
             <tr>
-              <th class="col-md-2">Name</th>
-              <th class="col-md-2">Email</th>
-              <th class="col-md-2">Phone</th>
-              <th class="col-md-2">Address</th>
-              <th class="col-md-2">Emerg. Contact</th>
-              <th class="col-md-2">Emerg. Phone</th>
+              <th class="col-xs-2"></th>
+              <th class="col-xs-2">Name</th>
+              <th class="col-xs-2">Email</th>
+              <th class="col-xs-2">Phone</th>
+              <th class="col-xs-2">Emerg. Phone</th>
             </tr>
             <% time_slot.users.each do |user| %>
               <tr>
+                <% if user.appointment(time_slot).is_checkedin %>
+                  <td><%= link_to "Checked", root_path, class: "btn btn-primary disabled home-page" %></td>
+                <% else %>
+                  <td><%= link_to "Check in", checkin_path(:id => user.id, :timeslot_id => time_slot.id, :event_id => @event.id), class: "btn btn-primary home-page" %></td>
+                <% end %>
                 <td><%= link_to user.name, user %></td>
                 <td><%= user.email %></td>
                 <td><%= user.phone %></td>
-                <td><%= user.address %></td>
-                <td><%= user.emergency_contact_name %></td>
                 <td><%= user.emergency_contact_phone %></td>
               </tr>
             <% end %>
@@ -31,8 +33,8 @@
         <% end %>
         <%= link_to "Back", event_path(@event) %>
       </ul>
+      <% else %>
+        Access Denied
+      <% end %>
     </div>
   </div>
-<% else %>
-  Access Denied
-<% end %>

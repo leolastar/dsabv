@@ -4,6 +4,11 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= favicon_link_tag 'favicon.ico' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="og:title" content="<%= full_title(yield(:title)) %>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://dsabv.herokuapp.com/assets/DSABV-logo-50efd1197d113df01fecf34765c50604.jpg">
+    <meta property="og:url" content="https://dsabv.herokuapp.com/">
+    <meta property="og:description" content="">
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
