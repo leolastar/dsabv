@@ -1,5 +1,0 @@
-<p>Dear <%= @user.name %>,</p>
-
-<p>Welcome! Click on the following link to activate your account:</p>
-
-<p><%= edit_account_activation_url(@user.activation_token, email: @user.email) %></p>
