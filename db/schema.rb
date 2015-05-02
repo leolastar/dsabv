@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502180028) do
+ActiveRecord::Schema.define(version: 20150502213339) do
 
   create_table "appointments", force: true do |t|
     t.integer  "user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150502180028) do
     t.boolean  "is_checkedin"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "class_slot_id"
   end
 
   create_table "articles", force: true do |t|
@@ -50,7 +51,10 @@ ActiveRecord::Schema.define(version: 20150502180028) do
     t.string   "day"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "class_slot_id"
   end
+
+  add_index "days", ["class_slot_id"], name: "index_days_on_class_slot_id"
 
   create_table "ds_classes", force: true do |t|
     t.string   "title"
