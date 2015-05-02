@@ -1,0 +1,40 @@
+<% provide(:title, 'Sign up') %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 jumbotron">
+    <h1>Sign up</h1>
+      <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+          <%= form_for(@user) do |f| %>
+           <%= render 'shared/error_messages', object: f.object %>
+
+            <%= f.label :name %>
+            <%= f.text_field :name, :placeholder => "First Last", class: 'form-control' %>
+
+            <%= f.label :email %>
+            <%= f.email_field :email, :placeholder => "ex. John@example.com", class: 'form-control' %>
+
+            <%= f.label :password %>
+            <%= f.password_field :password, :placeholder => "Enter password", class: 'form-control' %>
+
+            <%= f.label :password_confirmation, "Password Confirmation" %>
+            <%= f.password_field :password_confirmation, :placeholder => "Repeat password", class: 'form-control' %>
+
+            <%= f.label :phone, "Phone Number" %>
+            <%= f.telephone_field :phone, :placeholder => "ex. (979) 000-0000", class: 'form-control' %>
+
+            <%= f.label :address %>
+            <%= f.text_field :address, :placeholder => "Address, City, State, and Zip", class: 'form-control' %>
+
+            <%= f.label :emergency_contact_name, 'Emergency Contact Name' %>
+            <%= f.text_field :emergency_contact_name, :placeholder => "First Last", class: 'form-control' %>
+
+            <%= f.label :emergency_contact_phone, 'Emergency Contact Phone' %>
+            <%= f.telephone_field :emergency_contact_phone, :placeholder => "ex. (979) 000-0000", class: 'form-control' %>
+
+            <%= f.submit "Create my account", class: "btn btn-primary home-page" %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

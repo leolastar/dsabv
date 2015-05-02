@@ -1,0 +1,13 @@
+<li>
+  <%= link_to user.name, user %>
+  (<%= user.email %>)
+  <% if current_user.admin? && !current_user?(user) %>
+  	<% if user.staff %>
+  		| <%= link_to "Remove staff role", remove_staff_role_path(:id => user.id) %>
+  	<% else %>
+  		| <%= link_to "Add staff role", give_staff_role_path(:id => user.id) %>
+  	<% end %>
+    | <%= link_to "Delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+</li>
