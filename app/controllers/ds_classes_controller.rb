@@ -29,7 +29,7 @@ class DsClassesController < ApplicationController
 
   def show
     @ds_class = DsClass.find params[:id]
-    @time_slots = @ds_class.time_slots.paginate(page: params[:page])
+    @class_slots = @ds_class.class_slots.paginate(page: params[:page])
   end
 
   def new
@@ -62,9 +62,9 @@ class DsClassesController < ApplicationController
 
   def destroy
     @ds_class = DsClass.find params[:id]
-    @ds_class.time_slots.each do |time_slot|
-      time_slot.users.each do |user|
-        EventMailer.event_cancellation(user, time_slot).deliver
+    @ds_class.class_slots.each do |class_slot|
+      class_slot.users.each do |user|
+        EventMailer.event_cancellation(user, class_slot).deliver
       end
     end
 
@@ -75,8 +75,8 @@ class DsClassesController < ApplicationController
 
   def add_time_slot
     @ds_class = DsClass.find params[:id]
-    @time_slots = @ds_class.time_slots.paginate(page: params[:page])
-    @time_slot = @ds_class.time_slots.build
+    @class_slots = @ds_class.class_slots.paginate(page: params[:page])
+    @class_slot = @ds_class.class_slots.build
   end
 
   def show_roster
@@ -84,14 +84,14 @@ class DsClassesController < ApplicationController
   end
 
   def register
-    time_slot = TimeSlot.find(params[:time_slot_id])
+    class_slot = ClassSlot.find(params[:class_slot_id])
 
-    time_slot.remaining_capacity -= 1
-    time_slot.save
+    class_slot.remaining_capacity -= 1
+    class_slot.save
 
-    EventMailer.event_registration(current_user, time_slot).deliver
+    EventMailer.event_registration(current_user, class_slot).deliver
 
-    current_user.time_slots << time_slot
+    current_user.class_slots << class_slot
     flash[:success] = "You have successfully registered the class."
     redirect_to registrations_user_path(current_user)
   end

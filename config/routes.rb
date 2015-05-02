@@ -35,9 +35,10 @@ Rails.application.routes.draw do
   end
 
   resources :ds_classes do
-    resources :time_slots, only: [:create, :destroy]
+    resources :class_slots, only: [:create, :destroy]
     member do
       put 'register'
+      put 'unregister'
     end
   end
 
@@ -65,6 +66,8 @@ Rails.application.routes.draw do
 
   get    'ds_classes/:id/roster'        => 'ds_classes#show_roster',   as: 'roster_of_ds_class'
   get    'ds_classes/:id/add_time_slot' => 'ds_classes#add_time_slot', as: 'add_time_slot_to_ds_class'
+  
+  get    'ds_classes/:id/class_slot/:id/add_day'  => 'class_slots#add_day', as: 'add_day_to_class'
 
   resources :users do
     member do

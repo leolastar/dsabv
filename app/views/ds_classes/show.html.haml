@@ -24,4 +24,12 @@
           |
           = link_to "Roster", roster_of_ds_class_path(@ds_class)
           |
-        = link_to "Back", ds_classes_path
+          = link_to "Add time slot", add_time_slot_to_ds_class_path
+          |
+        = link_to "Back", ds_class_path
+      %div.col-xs-12.col-sm-4
+        %h6 Class Times
+        - if @ds_class.class_slots.any?
+          %ol.time_slots
+            = render @class_slots
+          = will_paginate @class_slots
