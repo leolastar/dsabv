@@ -25,6 +25,8 @@
 
           <%= f.label :emergency_contact_phone %>
           <%= f.telephone_field :emergency_contact_phone, class: 'form-control' %>
+          
+          <%= link_to "Change Password",  new_password_reset_path , :class => "btn btn-primary" %>
 
           <%= f.submit "Save changes", class: "btn btn-primary" %>
         <% end %>
