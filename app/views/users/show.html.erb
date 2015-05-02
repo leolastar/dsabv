@@ -1,5 +1,5 @@
-<% provide(:title, @user.name) %>
 <% if logged_in? && (current_user?(@user) || current_user.admin) %>
+<% provide(:title, @user.name) %>
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 jumbotron">
       <div class="row">
