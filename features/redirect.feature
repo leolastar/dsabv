@@ -8,7 +8,7 @@ Feature: Redirect after login
         And an admin creates a timeslot
         And an user registers the event
         And I am on the event page
-    When I press "Register"
+    When I follow "Register"
     Then I should be on the login page
         And I fill in "Email" with "test@test.com"
         And I fill in "Password" with "password"
