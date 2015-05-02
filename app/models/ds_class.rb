@@ -1,6 +1,6 @@
 class DsClass < ActiveRecord::Base
-	has_many :time_slots, dependent: :destroy
-	has_many :users, through: :time_slots
+	has_many :class_slots, dependent: :destroy
+	has_many :users, through: :class_slots
 
 	def send_event_register_email
 		EventMailer.event_register_notification(self).deliver
