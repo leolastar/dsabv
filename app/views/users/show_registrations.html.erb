@@ -7,13 +7,13 @@
         <th class="col-md-6">Event</th>
         <th class="col-md-4">Time</th>
       </tr>
-      <% @registrations.sort_by{|s| s[:datetime]}.each do |registration| %>
+      <% @registrations.sort_by{|s| s[:date]}.each do |registration| %>
         <tr>
           <td class="col-md-6">
             <%= link_to registration.event.title, registration.event %>
           </td>
           <td class="col-md-4">
-            <%= registration.event.date.sort %><br>
+            <%= registration.event.date %><br>
             <%= registration.start_time.strftime("%I:%M %p") %> -- <%= registration.end_time.strftime("%I:%M %p") %>
           </td>
         </tr>
