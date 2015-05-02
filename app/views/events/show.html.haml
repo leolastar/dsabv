@@ -31,6 +31,6 @@
         %h6 Time
         - if @event.time_slots.any?
           %ol.time_slots
-            = render @time_slots.order('appointments ASC')
+            = render @time_slots
           = will_paginate @time_slots
 
