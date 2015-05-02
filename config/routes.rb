@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'class_slots/create'
+
+  get 'class_slots/destory'
+
   resources :ds_classes
 
   resources :buddy_walks
