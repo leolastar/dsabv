@@ -21,8 +21,9 @@ class ClassSlotsController < ApplicationController
   end
   
   def add_day
-    @class_slot = DsClass.find params[:id]
-    @day = @class_slot.days.build
+    @ds_class = DsClass.find params[:class_id]
+    @class_slot = ClassSlot.find params[:class_slot_id]
+    @day = Day.new
   end
   
   def remove_day
