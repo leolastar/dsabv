@@ -37,7 +37,7 @@ class ClassSlotsController < ApplicationController
       EventMailer.event_cancellation(user, @class_slot).deliver
     end
     @class_slot.destroy
-    flash[:notice] = "Time slot deleted."
+    flash[:info] = "Time slot deleted."
     redirect_to ds_class_path(ds_class)
   end
 

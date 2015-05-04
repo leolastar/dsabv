@@ -102,8 +102,6 @@ class DsClassesController < ApplicationController
       params.require(:ds_class).permit(:title,
                                     :place,
                                     :description,
-                                    :start_time,
-                                    :end_time,
                                     :start_date,
                                     :end_date)
     end

@@ -16,7 +16,7 @@
     - elsif logged_in? && current_user.class_slots.exists?(class_slot.id)
       Registered &nbsp;
       = link_to "Unregister", { action: :unregister, class_slot_id: class_slot.id }, { method: :put }
-    - elsif time_slot.capacity_left > 0
+    - elsif class_slot.capacity_left > 0
       = link_to "Register", { action: :register, class_slot_id: class_slot.id }, { method: :put }
     - else
       Full
