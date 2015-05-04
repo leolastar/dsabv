@@ -64,7 +64,7 @@ class DsClassesController < ApplicationController
     @ds_class = DsClass.find params[:id]
     @ds_class.class_slots.each do |class_slot|
       class_slot.users.each do |user|
-        EventMailer.event_cancellation(user, class_slot).deliver
+        EventMailer.event_cancellation_class(user, class_slot).deliver
       end
     end
 
@@ -89,11 +89,14 @@ class DsClassesController < ApplicationController
     class_slot.remaining_capacity -= 1
     class_slot.save
 
-    EventMailer.event_registration(current_user, class_slot).deliver
+    EventMailer.event_registration_class(current_user, class_slot).deliver
 
     current_user.class_slots << class_slot
     flash[:success] = "You have successfully registered the class."
     redirect_to registrations_user_path(current_user)
+  end
+
+  def unregister
   end
 
   private

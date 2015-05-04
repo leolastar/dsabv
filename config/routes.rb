@@ -56,6 +56,8 @@ Rails.application.routes.draw do
   get    'calendar' => 'static_pages#calendar'
   get    'edit_text_box' => 'static_pages#edit_text_box'
   get    'checkin' => 'users#checkin'
+  get    'checkin_class' => 'users#checkin_class'
+  get    'checkin_buddy_walk' => 'users#checkin_buddy_walk'
   get    'give_staff_role' => 'users#give_staff_role'
   get    'remove_staff_role' => 'users#remove_staff_role'
 

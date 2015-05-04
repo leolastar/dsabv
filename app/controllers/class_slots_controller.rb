@@ -34,7 +34,7 @@ class ClassSlotsController < ApplicationController
     ds_class = DsClass.find params[:ds_class_id]
     @class_slot = ClassSlot.find params[:id]
     @class_slot.users.each do |user|
-      EventMailer.event_cancellation(user, @class_slot).deliver
+      EventMailer.event_cancellation_class(user, @class_slot).deliver
     end
     @class_slot.destroy
     flash[:info] = "Time slot deleted."

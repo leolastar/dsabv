@@ -73,12 +73,25 @@ class UsersController < ApplicationController
   def show_registrations
     user = User.find(params[:id])
     @registrations = user.time_slots
+    @class_slots = user.class_slots
   end
 
   def checkin
     appointment = Appointment.where(:user_id => params[:id], :time_slot_id => params[:timeslot_id]).first
     appointment.update_attributes(:is_checkedin => true)
     redirect_to roster_of_event_url(params[:event_id])
+  end
+
+  def checkin_class
+    appointment = Appointment.where(:user_id => params[:id], :class_slot_id => params[:class_slot_id]).first
+    appointment.update_attributes(:is_checkedin => true)
+    redirect_to roster_of_ds_class_url(params[:ds_class_id])
+  end
+
+  def checkin_buddy_walk
+    appointment = Appointment.where(:user_id => params[:id], :buddy_slot_id => params[:buddy_slot_id]).first
+    appointment.update_attributes(:is_checkedin => true)
+    redirect_to roster_of_buddy_walks_url(params[:buddy_walk_id])
   end
 
   def give_staff_role

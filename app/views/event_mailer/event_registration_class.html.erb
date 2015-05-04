@@ -1,0 +1,13 @@
+<p>
+Dear <%= @user.name %>
+</p>
+
+<p>
+Thank you for registering the following event.
+</p>
+
+<p>
+Event: <%= @class_slot.ds_class.title %><br>
+Date: <%= @class_slot.ds_class.start_date %> - <%= @class_slot.ds_class.end_date %><br>
+<%= @class_slot.start_time %> -- <%= @class_slot.end_time %>
+</p>

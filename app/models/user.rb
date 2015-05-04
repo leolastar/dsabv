@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :appointments
   has_many :time_slots, through: :appointments
+  has_many :class_slots, through: :appointments
   has_many :events, through: :time_slots
   has_many :buddy_walks, through: :time_slots
   has_many :ds_classes, through: :time_slots
@@ -38,6 +39,14 @@ class User < ActiveRecord::Base
 
   def appointment(timeslot)
     appointment = Appointment.where(user_id: self.id, time_slot_id: timeslot.id).first
+  end
+
+  def appointment_class(class_slot)
+    appointment = Appointment.where(user_id: self.id, class_slot_id: class_slot.id).first
+  end
+
+  def appointment_buddy(buddy_slot)
+    appointment = Appointment.where(user_id: self.id, buddy_slot_id: buddy_slot.id).first
   end
  
   # Remembers a user in the database for use in persistent sessions.
