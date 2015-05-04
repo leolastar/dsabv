@@ -101,12 +101,16 @@ class EventsController < ApplicationController
 
   def unregister
     time_slot = TimeSlot.find(params[:time_slot_id])
-    time_slot.remaining_capacity += 1
-    time_slot.save
-    current_user.appointment(time_slot).destroy
-    current_user.time_slots.delete(time_slot)
-    flash[:success] = "You have successfully unregistered for the event."
-    redirect_to registrations_user_path(current_user)
+    if !current_user.time_slots.include?(time_slot)
+      redirect_to registrations_user_path(current_user)
+    else
+      time_slot.remaining_capacity += 1
+      time_slot.save
+      current_user.appointment(time_slot).destroy
+      current_user.time_slots.delete(time_slot)
+      flash[:success] = "You have successfully unregistered for the event."
+      redirect_to registrations_user_path(current_user)
+    end
   end
 
   private
