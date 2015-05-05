@@ -1,29 +1,19 @@
-<%= form_for(@buddy_walk) do |f| %>
-  <% if @buddy_walk.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@buddy_walk.errors.count, "error") %> prohibited this buddy_walk from being saved:</h2>
-
-      <ul>
-      <% @buddy_walk.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :place %><br>
-    <%= f.text_field :place %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+= form_for(@buddy_walk) do |f|
+  - if @buddy_walk.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@buddy_walk.errors.count, "error")
+        prohibited this buddy_walk from being saved:
+      %ul
+        - @buddy_walk.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :title
+    %br/
+    = f.text_field :title
+  .field
+    = f.label :description
+    %br/
+    = f.text_area :description
+  .actions
+    = f.submit
