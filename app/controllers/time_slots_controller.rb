@@ -30,7 +30,7 @@ class TimeSlotsController < ApplicationController
     redirect_to event_path(event)
   end
   
-  def sort
+  def sort_time_slot
     
     
   end
