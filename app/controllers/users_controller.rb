@@ -99,7 +99,7 @@ def registration_confirmation
 
   def show_registrations
     user = User.find(params[:id])
-    @registrations = user.time_slots.event.order('date ASC, time_slots ASSC')
+    @registrations = user.time_slots.event.order('date ASC, time_slots ASC')
     @class_slots = user.class_slots
   end
 
