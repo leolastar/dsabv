@@ -1,6 +1,6 @@
 class DsClass < ActiveRecord::Base
-	has_many :time_slots, dependent: :destroy
-	has_many :users, through: :time_slots
+	has_many :class_slots, dependent: :destroy
+	has_many :users, through: :class_slots
 	validates :start_date, presence: true
 	validates :end_date, presence: true
 

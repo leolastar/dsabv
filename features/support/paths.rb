@@ -37,12 +37,18 @@ module NavigationHelpers
         events_path
     when /the event page/
       then "/events/1"
+    when /the class page/
+      then "/ds_classes/1"
     when /the add time slot page/
       then add_time_slot_to_event_path(1)
+    when /the add class slot page/
+      then add_time_slot_to_ds_class_path(1)
     when /the events roster/
       then roster_of_event_path(1)
     when /my registrations page/
       then registrations_user_path(2)
+    when /add day page/
+      then add_day_to_class_slot_path(1,1)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

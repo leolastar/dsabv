@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'days/create'
+
+  patch 'days/destory'
+
+  get 'class_slots/create'
+
+  get 'class_slots/destory'
+
   resources :ds_classes
 
   resources :buddy_walks
@@ -31,9 +39,16 @@ Rails.application.routes.draw do
   end
 
   resources :ds_classes do
-    resources :time_slots, only: [:create, :destroy]
+    resources :class_slots, only: [:create, :destroy]
     member do
       put 'register'
+      put 'unregister'
+    end
+  end
+
+  resources :class_slot do
+    resources :days, only: [:create, :destroy]
+    member do
     end
   end
 
@@ -41,6 +56,8 @@ Rails.application.routes.draw do
   get    'calendar' => 'static_pages#calendar'
   get    'edit_text_box' => 'static_pages#edit_text_box'
   get    'checkin' => 'users#checkin'
+  get    'checkin_class' => 'users#checkin_class'
+  get    'checkin_buddy_walk' => 'users#checkin_buddy_walk'
   get    'give_staff_role' => 'users#give_staff_role'
   get    'remove_staff_role' => 'users#remove_staff_role'
 
@@ -63,6 +80,9 @@ Rails.application.routes.draw do
 
   get    'ds_classes/:id/roster'        => 'ds_classes#show_roster',   as: 'roster_of_ds_class'
   get    'ds_classes/:id/add_time_slot' => 'ds_classes#add_time_slot', as: 'add_time_slot_to_ds_class'
+  
+  get    'ds_classes/:class_id/class_slot/:class_slot_id/add_day'  => 'class_slots#add_day', as: 'add_day_to_class_slot'
+  get    'ds_classes/:class_id/class_slot/:class_slot_id/remove_day'  => 'class_slots#remove_day', as: 'remove_day_from_class_slot'
 
   resources :users do
     member do

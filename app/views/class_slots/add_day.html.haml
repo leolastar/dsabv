@@ -1,0 +1,18 @@
+- provide(:title, "Add day of the week")
+%div.row
+  %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
+    %div.event_info
+      %h1 Add day of the week
+      %div.col-xs-12.col-md-6.col-md-offset-3
+        - if logged_in? && current_user.admin
+          = form_for([@class_slot, @day]) do |f|
+            = render 'shared/error_messages', object: f.object
+
+            = f.label :day, "Day of the week"
+            = f.select :day, [["Monday", "Monday"], ["Tuesday", "Tuesday"],["Wednesday", "Wednesday"],["Thursday", "Thursday"],["Friday", "Friday"],["Saturday", "Saturday"],["Sunday", "Sunday"],]
+              
+            = f.submit "Submit", class: "btn btn-primary home-page"
+          %br/
+          = link_to "Back", ds_class_path(@ds_class)
+        -else
+          Access Denied

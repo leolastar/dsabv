@@ -1,0 +1,24 @@
+%li{:id => "class slot #{class_slot.id}"}
+  %span.content
+    = render class_slot.days
+  %span.content
+    #{class_slot.start_time.strftime("%I:%M %p")} --
+    #{class_slot.end_time.strftime("%I:%M %p")}
+  %span.content
+    Available slots:
+    #{class_slot.capacity_left} out of
+    #{class_slot.total_capacity}
+    %br
+    - if logged_in? && current_user.admin
+      = link_to "Add day of the week", { action: :add_day, controller: :class_slots, class_slot_id: class_slot.id, class_id: class_slot.ds_class.id }
+      |
+      = link_to "Delete", { action: :destroy, controller: :class_slots, id: class_slot.id, ds_class_id: class_slot.ds_class.id }, method: :delete, data: { confirm: "Are you sure?" }
+      |
+      = link_to "Remove day of the week", { action: :remove_day, controller: :class_slots, class_slot_id: class_slot.id, class_id: class_slot.ds_class.id }
+    - elsif logged_in? && current_user.class_slots.exists?(class_slot.id)
+      Registered &nbsp;
+      = link_to "Unregister", { action: :unregister, class_slot_id: class_slot.id }, { method: :put }
+    - elsif class_slot.capacity_left > 0
+      = link_to "Register", { action: :register, class_slot_id: class_slot.id }, { method: :put }
+    - else
+      Full

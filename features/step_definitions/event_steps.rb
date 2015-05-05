@@ -17,7 +17,7 @@ When(/^I create a new event$/) do
         And I fill in "Title" with "Test event"
         And I fill in "Date" with "12/12/2014"
         And I fill in "Location" with "Mi casa"
-        And I fill in "Description" with "description"
+        And I fill in "Description" with "<h1>howdy</h1>"
     When I press "Create new event"
     Then I should be on the event page
     When I follow "Back"
@@ -59,6 +59,8 @@ When(/^I click on an event$/) do
   steps %{
     Then I should see "Test event"
     When I follow "Test event"
+    Then I should see "howdy"
+      And I should not see "<h1>howdy</h1>"
   }
 end
 
