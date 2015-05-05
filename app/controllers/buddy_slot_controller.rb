@@ -3,7 +3,7 @@ class BuddySlotController < ApplicationController
 
   def create
     buddy_walk = BuddyWalk.find params[:buddy_walk_id]
-    @buddy_slot = buddy_walk.buddy_slots.build(buddy_slot_params)
+    @buddy_slot = buddy_walk.buddy_slot.build(buddy_slot_params)
     @buddy_slot[:start_time].change(year:  event.date.year,
                                    month: event.date.month,
                                    day:   event.date.day)

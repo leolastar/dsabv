@@ -18,8 +18,7 @@ class BuddyWalksController < ApplicationController
   end
 
   def show
-    @buddy_walk = BuddyWalk.find params[:id]
-    @buddy_slot = @buddy_walk.buddy_slot
+    @buddy_slot = BuddyWalk.find(params[:id]).buddy_slot
   end
 
   def new
