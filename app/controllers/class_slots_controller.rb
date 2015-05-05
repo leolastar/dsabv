@@ -27,7 +27,9 @@ class ClassSlotsController < ApplicationController
   end
   
   def remove_day
-    
+    @ds_class = DsClass.find params[:class_id]
+    @class_slot = ClassSlot.find params[:class_slot_id]
+    @day = @class_slot.days.first 
   end
 
   def destroy

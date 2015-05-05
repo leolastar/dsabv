@@ -13,6 +13,8 @@
       = link_to "Add day of the week", { action: :add_day, controller: :class_slots, class_slot_id: class_slot.id, class_id: class_slot.ds_class.id }
       |
       = link_to "Delete", { action: :destroy, controller: :class_slots, id: class_slot.id, ds_class_id: class_slot.ds_class.id }, method: :delete, data: { confirm: "Are you sure?" }
+      |
+      = link_to "Remove day of the week", { action: :remove_day, controller: :class_slots, class_slot_id: class_slot.id, class_id: class_slot.ds_class.id }
     - elsif logged_in? && current_user.class_slots.exists?(class_slot.id)
       Registered &nbsp;
       = link_to "Unregister", { action: :unregister, class_slot_id: class_slot.id }, { method: :put }

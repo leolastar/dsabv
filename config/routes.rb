@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'days/create'
 
-  get 'days/destory'
+  patch 'days/destory'
 
   get 'class_slots/create'
 
@@ -80,6 +80,7 @@ Rails.application.routes.draw do
   get    'ds_classes/:id/add_time_slot' => 'ds_classes#add_time_slot', as: 'add_time_slot_to_ds_class'
   
   get    'ds_classes/:class_id/class_slot/:class_slot_id/add_day'  => 'class_slots#add_day', as: 'add_day_to_class_slot'
+  get    'ds_classes/:class_id/class_slot/:class_slot_id/remove_day'  => 'class_slots#remove_day', as: 'remove_day_from_class_slot'
 
   resources :users do
     member do

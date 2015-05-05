@@ -7,18 +7,18 @@ class DaysController < ApplicationController
     @class_slot.days << Day.new(day_params)
     
     if @class_slot.save
-      flash[:success] = "New class slot added."
+      flash[:success] = "New day added."
       redirect_to ds_class_path(ds_class)
     else
       render 'static_pages/home'
     end
   end
 
-  def destroy
-    ds_class = DsClass.find params[:ds_class_id]
-    @day = Day.find params[:id]
+  def destory
+    ds_class = DsClass.find params[:class_id]
+    @day = Day.find params[:day][:id]
     @day.destroy
-    flash[:success] = "Time slot deleted."
+    flash[:info] = "Removed day."
     redirect_to ds_class_path(ds_class)
   end
 
