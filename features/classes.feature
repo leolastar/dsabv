@@ -38,22 +38,22 @@ Feature: Classes Management
         And an admin creates a class slot
         And I am login as an admin
     Then I am on the class page
-    When I follow "Add day of the week"
+    When I follow "Add day"
     Then I should be on the add day page
         And I should see "Day of the week"
         And I select "Monday" from "Day of the week"
     When I press "Submit"
     Then I should be on the class page
-        And I should see "Monday"
-        And I should not see "Tuesday"
-    When I follow "Add day of the week"
+        And I should see "Mon"
+        And I should not see "Tues"
+    When I follow "Add day"
      Then I should be on the add day page
         And I should see "Day of the week"
         And I select "Tuesday" from "Day of the week"
     When I press "Submit"
     Then I should be on the class page
-        And I should see "Monday"
-        And I should see "Tuesday"
+        And I should see "Mon"
+        And I should see "Tues"
 
 
     Scenario: Date format on Classes page
