@@ -1,0 +1,28 @@
+= provide(:title, 'My registrations')
+
+%div.row
+  %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
+    %h1 Registered Events
+    %table.table
+      %tr
+        %th.col-md-6 Event
+        %th.col-md-4 Time
+      - @registrations.each do |registration|
+        %tr
+          %td.col-md-6
+            = link_to registration.event.title, registration.event
+          %td.col-md-4
+            = registration.event.date
+            %br/
+            = registration.start_time.strftime("%I:%M %p")
+            \-- #{registration.end_time.strftime("%I:%M %p")}
+      - @class_slots.each do |class_slots|
+        %tr
+          %td.col-md-6
+            = link_to class_slots.ds_class.title, class_slots.ds_class
+          %td.col-md-4
+            #{class_slots.ds_class.start_date} - #{class_slots.ds_class.end_date}
+            %br
+            = render class_slots.days
+            %br
+            #{class_slots.start_time.strftime("%I:%M %p")} - #{class_slots.end_time.strftime("%I:%M %p")}

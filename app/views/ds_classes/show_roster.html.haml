@@ -1,0 +1,37 @@
+- provide(:title, 'Class Roster')
+
+%div.row
+  %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
+    - if logged_in? && (current_user.admin || current_user.staff)
+      %h1= @ds_class.title
+      %ul#details.col-xs-12.col-md-12
+        #{@ds_class.start_date} - #{@ds_class.end_date}
+        %br
+          #{@ds_class.place}
+          %br
+            %br
+              - @ds_class.class_slots.each do |class_slot|
+                %li
+                  = render class_slot.days
+                  %br
+                  #{class_slot.start_time.strftime("%I:%M %p")} - #{class_slot.end_time.strftime("%I:%M %p")}
+                %table.table
+                  %tr
+                    %th.col-xs-2
+                    %th.col-xs-2 Name
+                    %th.col-xs-2 Email
+                    %th.col-xs-2 Phone
+                    %th.col-xs-2 Emerg. Phone
+                  - class_slot.users.each do |user|
+                    %tr
+                      - if user.appointment_class(class_slot).is_checkedin
+                        %td= link_to "Checked", root_path, class: "btn btn-primary disabled home-page"
+                      - else
+                        %td= link_to "Check in", checkin_class_path(:id => user.id, :class_slot_id => class_slot.id, :ds_class_id => @ds_class.id), class: "btn btn-primary home-page"
+                      %td= link_to user.name, user
+                      %td= user.email
+                      %td= user.phone
+                      %td= user.emergency_contact_phone
+              = link_to "Back", ds_class_path(@ds_class)
+    - else
+      Access Denied
