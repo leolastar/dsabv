@@ -23,13 +23,9 @@
           |
           = link_to "Roster", roster_of_event_path(@buddy_walk)
           |
-          = link_to "Add time slot", add_time_slot_to_event_path
-          |
-        = link_to "Back", events_path
+        = link_to "Back", buddy_walks_path
       %div.col-xs-12.col-sm-4
         %h6 Time
-        - if @buddy_walk.time_slots.any?
           %ol.time_slots
-            = render @time_slots
-          = will_paginate @time_slots
+            = render @buddy_slots
 

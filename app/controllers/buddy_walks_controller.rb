@@ -1,6 +1,6 @@
 class BuddyWalksController < ApplicationController
   before_action :logged_in_user, only: [:register]
-  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_time_slot]
+  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_buddy_slot]
   before_action :staff_user,     only: [:show_roster]
 
   def index
@@ -19,7 +19,7 @@ class BuddyWalksController < ApplicationController
 
   def show
     @buddy_walk = BuddyWalk.find params[:id]
-    @time_slots = @buddy_walk.time_slots.paginate(page: params[:page])
+    @buddy_slot = @buddy_walk.buddy_slot
   end
 
   def new
@@ -43,7 +43,7 @@ class BuddyWalksController < ApplicationController
   def update
     @buddy_walk = BuddyWalk.find params[:id]
     if @buddy_walk.update_attributes(buddy_walk_params)
-      flash[:success] = "Event updated."
+      flash[:success] = "Buddy updated."
       redirect_to @buddy_walk
     else
       render 'edit'
@@ -52,20 +52,19 @@ class BuddyWalksController < ApplicationController
 
   def destroy
     @buddy_walk = BuddyWalk.find params[:id]
-    @buddy_walk.time_slots.each do |time_slot|
-      time_slot.users.each do |user|
-        EventMailer.event_cancellation(user, time_slot).deliver
+    @buddy_walk.buddy_slot.each do |buddy_slot|
+      buddy_slot.users.each do |user|
+        EventMailer.event_cancellation(user, buddy_slot).deliver
       end
     end
     @buddy_walk.destroy
-    flash[:flash] = "Event '#{@buddy_walk.title}' deleted."
+    flash[:flash] = "BuddyWalk '#{@buddy_walk.title}' deleted."
 		redirect_to buddy_walks_path
   end
 
-  def add_time_slot
+  def add_buddy_slot
     @buddy_walk = BuddyWalk.find params[:id]
-    @time_slots = @buddy_walk.time_slots.paginate(page: params[:page])
-    @time_slot = @buddy_walk.time_slots.build
+    @buddy_slot = @buddy_walk.buddy_slot.build
   end
 
   def show_roster
@@ -73,26 +72,18 @@ class BuddyWalksController < ApplicationController
   end
 
   def register
-    time_slot = TimeSlot.find(params[:time_slot_id])
+    buddy_slot = BuddySlot.find(params[:buddy_slot_id])
+    
+    buddy_slot.save
 
-    time_slot.remaining_capacity -= 1
-    time_slot.save
+    EventMailer.event_registration(current_user, buddy_slot).deliver
 
-    EventMailer.event_registration(current_user, time_slot).deliver
-
-    current_user.time_slots << time_slot
+    current_user.buddy_slot << buddy_slot
     flash[:success] = "You have successfully registered the event."
     redirect_to registrations_user_path(current_user)
   end
 
   private
-
-    def event_params
-      params.require(:event).permit(:title,
-                                    :date,
-                                    :place,
-                                    :description)
-    end
 
     def buddy_walk_params
       params.require(:buddy_walk).permit(:title, :date, :place, :description)
