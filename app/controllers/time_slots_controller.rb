@@ -29,6 +29,11 @@ class TimeSlotsController < ApplicationController
     flash[:info] = "Time slot deleted."
     redirect_to event_path(event)
   end
+  
+  def sort
+    
+    
+  end
 
   private
 
