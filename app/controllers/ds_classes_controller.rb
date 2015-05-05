@@ -85,7 +85,7 @@ class DsClassesController < ApplicationController
 
   def register
     class_slot = ClassSlot.find(params[:class_slot_id])
-    if current_user.time_slots.include?(time_slot)
+    if current_user.class_slots.include?(class_slot)
       redirect_to registrations_user_path(current_user)
     else
       class_slot.remaining_capacity -= 1

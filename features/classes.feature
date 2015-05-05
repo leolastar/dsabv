@@ -1,4 +1,4 @@
-Feature: Events Management
+Feature: Classes Management
     In order to manage classes
     As an admin
     I need a way to create, view classes, and check users in
