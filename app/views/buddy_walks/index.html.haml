@@ -13,8 +13,5 @@
       = render @buddy_walks.sort_by &:date
       %br
       -if logged_in? && current_user.admin
-        = link_to "Add new event", new_event_path
-
-      = will_paginate
-
+        = link_to "Add new BuddyWalk", new_buddy_walk_path
 

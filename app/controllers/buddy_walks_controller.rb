@@ -6,80 +6,70 @@ class BuddyWalksController < ApplicationController
   def index
     @article = Article.find_by_id(4)
     @buddy_walks = BuddyWalk.all
-    if params[:query]
-      @buddy_walks = BuddyWalk.search(params[:query])
-
-      url = "/searchresults_events?query=" + params[:query]
-      redirect_to url
-    else
-      @buddy_walks = []
-    end
-
-    @buddy_walks = BuddyWalk.paginate(page: params[:page])
   end
 
   def search
-    @events = Event.all
+    @buddy_walks = BuddyWalk.all
     if params[:query]
-      @events = Event.search(params[:query])
+      @buddy_walks = BuddyWalk.search(params[:query])
     else
-      @events = []
+      @buddy_walks = []
     end
   end
 
   def show
-    @event = Event.find params[:id]
-    @time_slots = @event.time_slots.paginate(page: params[:page])
+    @buddy_walk = BuddyWalk.find params[:id]
+    @time_slots = @buddy_walk.time_slots.paginate(page: params[:page])
   end
 
   def new
-    @event = Event.new
+    @buddy_walk = BuddyWalk.new
   end
 
   def create
-    @event = Event.new(event_params)
-    if @event.save
-      flash[:success] = "New event has been created."
-      redirect_to event_path(@event)
+    @buddy_walk = BuddyWalk.new(buddy_walk_params)
+    if @buddy_walk.save
+      flash[:success] = "New Buddy Walk has been created."
+      redirect_to buddy_walk_path(@buddy_walk)
     else
       render 'new'
     end
   end
 
   def edit
-    @event = Event.find params[:id]
+    @buddy_walk = BuddyWalk.find params[:id]
   end
 
   def update
-    @event = Event.find params[:id]
-    if @event.update_attributes(event_params)
+    @buddy_walk = BuddyWalk.find params[:id]
+    if @buddy_walk.update_attributes(buddy_walk_params)
       flash[:success] = "Event updated."
-      redirect_to @event
+      redirect_to @buddy_walk
     else
       render 'edit'
     end
   end
 
   def destroy
-    @event = Event.find params[:id]
-    @event.time_slots.each do |time_slot|
+    @buddy_walk = BuddyWalk.find params[:id]
+    @buddy_walk.time_slots.each do |time_slot|
       time_slot.users.each do |user|
         EventMailer.event_cancellation(user, time_slot).deliver
       end
     end
-    @event.destroy
-    flash[:flash] = "Event '#{@event.title}' deleted."
-    redirect_to events_path
+    @buddy_walk.destroy
+    flash[:flash] = "Event '#{@buddy_walk.title}' deleted."
+		redirect_to buddy_walks_path
   end
 
   def add_time_slot
-    @event = Event.find params[:id]
-    @time_slots = @event.time_slots.paginate(page: params[:page])
-    @time_slot = @event.time_slots.build
+    @buddy_walk = BuddyWalk.find params[:id]
+    @time_slots = @buddy_walk.time_slots.paginate(page: params[:page])
+    @time_slot = @buddy_walk.time_slots.build
   end
 
   def show_roster
-    @event = Event.find(params[:id])
+    @buddy_walk = BuddyWalk.find(params[:id])
   end
 
   def register
@@ -105,7 +95,7 @@ class BuddyWalksController < ApplicationController
     end
 
     def buddy_walk_params
-      params.require(:event).permit(:title, :date, :place, :description)
+      params.require(:buddy_walk).permit(:title, :date, :place, :description)
     end
 
 end
