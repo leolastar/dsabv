@@ -31,5 +31,5 @@
         %h6 Class Times
         - if @ds_class.class_slots.any?
           %ol.time_slots
-            = render @class_slots
+            = render @class_slots.reverse
           = will_paginate @class_slots
