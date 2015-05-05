@@ -105,7 +105,7 @@ class EventsController < ApplicationController
     time_slot.save
     current_user.appointment(time_slot).destroy
     current_user.time_slots.delete(time_slot)
-    flash[:success] = "You have successfully unregistered for the event."
+    flash[:success] = "You have successfully unregistered for this event."
     redirect_to registrations_user_path(current_user)
   end
 

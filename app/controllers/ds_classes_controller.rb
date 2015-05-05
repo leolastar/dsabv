@@ -1,5 +1,5 @@
 class DsClassesController < ApplicationController
-  before_action :logged_in_user, only: [:register]
+  before_action :logged_in_user, only: [:register, :unregister]
   before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_time_slot]
   before_action :staff_user,     only: [:show_roster]
 
@@ -97,6 +97,13 @@ class DsClassesController < ApplicationController
   end
 
   def unregister
+    class_slot = ClassSlot.find(params[:class_slot_id])
+    class_slot.remaining_capacity += 1
+    class_slot.save
+    current_user.appointment_class(class_slot).destroy
+    current_user.class_slots.delete(class_slot)
+    flash[:success] = "You have successfully unregistered for this event."
+    redirect_to registrations_user_path(current_user)
   end
 
   private
