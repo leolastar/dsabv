@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get 'class_slots/create'
 
   get 'class_slots/destory'
+  
+  get 'buddy_slots/create'
+
+  get 'buddy_slots/destory'
 
   resources :ds_classes
 
@@ -32,7 +36,7 @@ Rails.application.routes.draw do
   end
 
   resources :buddy_walks do
-    resources :time_slots, only: [:create, :destroy]
+    resources :buddy_slots, only: [:create, :destroy]
     member do
       put 'register'
     end
@@ -75,8 +79,8 @@ Rails.application.routes.draw do
   get    'events/:id/roster'        => 'events#show_roster',   as: 'roster_of_event'
   get    'events/:id/add_time_slot' => 'events#add_time_slot', as: 'add_time_slot_to_event'
 
-  get    'buddy_walks/:id/roster'        => 'buddy_walk#show_roster',   as: 'roster_of_buddy_walk'
-  get    'buddy_walks/:id/add_buddy_slot' => 'buddy_walk#add_buddy_slot', as: 'add_buddy_slot_to_buddy_walks'
+  get    'buddy_walks/:id/roster'        => 'buddy_walks#show_roster',   as: 'roster_of_buddy_walk'
+  get    'buddy_walks/:id/add_buddy_slot' => 'buddy_walks#add_buddy_slot', as: 'add_buddy_slot_to_buddy_walks'
 
   get    'ds_classes/:id/roster'        => 'ds_classes#show_roster',   as: 'roster_of_ds_class'
   get    'ds_classes/:id/add_time_slot' => 'ds_classes#add_time_slot', as: 'add_time_slot_to_ds_class'
