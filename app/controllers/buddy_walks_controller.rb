@@ -82,6 +82,12 @@ class BuddyWalksController < ApplicationController
     redirect_to registrations_user_path(current_user)
   end
 
+  def schedule
+  end
+
+  def edit_schedule
+  end
+
   private
 
     def buddy_walk_params

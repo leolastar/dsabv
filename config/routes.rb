@@ -60,6 +60,8 @@ Rails.application.routes.draw do
   get    'checkin_buddy_walk' => 'users#checkin_buddy_walk'
   get    'give_staff_role' => 'users#give_staff_role'
   get    'remove_staff_role' => 'users#remove_staff_role'
+  get    'schedule_buddy_walk' => 'buddy_walks#schedule'
+  get    'edit_schedule_buddy_walk' => 'buddy_walks#edit_schedule'
 
   get    'signup' => 'users#new'
   get    'login'  => 'sessions#new'

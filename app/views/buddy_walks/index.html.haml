@@ -13,5 +13,9 @@
       = render @buddy_walks.sort_by &:date
       %br
       -if logged_in? && current_user.admin
-        = link_to "Add new BuddyWalk", new_buddy_walk_path
+        - if @buddy_walks.any?
+          = link_to "Add new Registration Deal", new_buddy_walk_path
+          = link_to "Change Buddy Walk Schedule", edit_schedule_buddy_walk_path
+        - else
+          = link_to "Schedule Buddy Walk Event", schedule_buddy_walk_path
 
