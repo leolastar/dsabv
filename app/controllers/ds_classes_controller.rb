@@ -85,25 +85,32 @@ class DsClassesController < ApplicationController
 
   def register
     class_slot = ClassSlot.find(params[:class_slot_id])
+    if current_user.time_slots.include?(time_slot)
+      redirect_to registrations_user_path(current_user)
+    else
+      class_slot.remaining_capacity -= 1
+      class_slot.save
 
-    class_slot.remaining_capacity -= 1
-    class_slot.save
+      EventMailer.event_registration_class(current_user, class_slot).deliver
 
-    EventMailer.event_registration_class(current_user, class_slot).deliver
-
-    current_user.class_slots << class_slot
-    flash[:success] = "You have successfully registered the class."
-    redirect_to registrations_user_path(current_user)
+      current_user.class_slots << class_slot
+      flash[:success] = "You have successfully registered the class."
+      redirect_to registrations_user_path(current_user) 
+    end
   end
 
   def unregister
     class_slot = ClassSlot.find(params[:class_slot_id])
-    class_slot.remaining_capacity += 1
-    class_slot.save
-    current_user.appointment_class(class_slot).destroy
-    current_user.class_slots.delete(class_slot)
-    flash[:success] = "You have successfully unregistered for this event."
-    redirect_to registrations_user_path(current_user)
+    if !current_user.class_slots.include?(class_slot)
+      redirect_to registrations_user_path(current_user)
+    else
+      class_slot.remaining_capacity += 1
+      class_slot.save
+      current_user.appointment_class(class_slot).destroy
+      current_user.class_slots.delete(class_slot)
+      flash[:success] = "You have successfully unregistered for this event."
+      redirect_to registrations_user_path(current_user)
+    end
   end
 
   private
