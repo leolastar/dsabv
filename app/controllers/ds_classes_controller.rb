@@ -69,7 +69,7 @@ class DsClassesController < ApplicationController
     end
 
     @ds_class.destroy
-    flash[:success] = "Class '#{@ds_class.title}' deleted."
+    flash[:info] = "Class '#{@ds_class.title}' deleted."
     redirect_to ds_classes_path
   end
 
