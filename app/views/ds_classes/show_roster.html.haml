@@ -12,7 +12,7 @@
             %br
               - @ds_class.class_slots.each do |class_slot|
                 %li
-                  = render class_slot.days
+                  = render class_slot.days.reverse
                   %br
                   #{class_slot.start_time.strftime("%I:%M %p")} - #{class_slot.end_time.strftime("%I:%M %p")}
                 %table.table

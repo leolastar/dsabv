@@ -23,6 +23,6 @@
           %td.col-md-4
             #{class_slots.ds_class.start_date} - #{class_slots.ds_class.end_date}
             %br
-            = render class_slots.days
+            = render class_slots.days.reverse
             %br
             #{class_slots.start_time.strftime("%I:%M %p")} - #{class_slots.end_time.strftime("%I:%M %p")}
