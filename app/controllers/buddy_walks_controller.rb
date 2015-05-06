@@ -106,20 +106,25 @@ class BuddyWalksController < ApplicationController
   end
 
   def schedule
-    @buddy_walk = BuddyWalk.all.first
+    @buddy_walk = BuddyWalk.new
   end
 
   def schedule_update
-    buddy_walk = BuddyWalk.new(buddy_walk_params)
+    @buddy_walk = BuddyWalk.new(buddy_walk_params)
     first = BuddyWalk.all.first
+    @buddy_walk.date = first.date
+    @buddy_walk.place = first.place
     if first.buddy_slot != nil
-      buddy_walk.buddy_slot = first.buddy_slot
-      buddy_walk.buddy_slot.save
+      @buddy_walk.buddy_slot = BuddySlot.new
+      @buddy_walk.buddy_slot.start_time = first.buddy_slot.start_time
+      @buddy_walk.buddy_slot.end_time = first.buddy_slot.end_time
+      @buddy_walk.buddy_slot.save
     end 
-    if buddy_walk.save
+    if @buddy_walk.save
       flash[:success] = "New Buddy Walk Deal has been created."
-      redirect_to buddy_walk_path(buddy_walk)
+      redirect_to buddy_walk_path(@buddy_walk)
     else
+      flash[:info] = "New Buddy walk deal did not save!"
       redirect_to schedule_buddy_walk_path
     end
   end

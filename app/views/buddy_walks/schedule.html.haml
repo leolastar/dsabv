@@ -9,10 +9,6 @@
           = f.label :title
           = f.text_field :title, :value => "", class: 'form-control'
 
-          = f.hidden_field :date, :value => @buddy_walk.date.strftime("   %B %_d, %Y")
-
-          = f.hidden_field :place, :value => @buddy_walk.place
-
           = f.label :description
           = f.text_area :description, :value => "", class: 'form-control', :placeholder => "Enter description"
 

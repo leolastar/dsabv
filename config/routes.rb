@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   get    'remove_staff_role' => 'users#remove_staff_role'
   get    'schedule_buddy_walk' => 'buddy_walks#schedule'
   get    'edit_schedule_buddy_walk' => 'buddy_walks#edit_schedule'
-  patch    'schedule_update' => 'buddy_walks#schedule_update'
+  post    'schedule_update' => 'buddy_walks#schedule_update'
   patch    'edit_schedule_update' => 'buddy_walks#edit_schedule_update'
 
   get    'signup' => 'users#new'
