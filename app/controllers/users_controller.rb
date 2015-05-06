@@ -1,6 +1,3 @@
-
-$temp
-$temp2
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
@@ -101,6 +98,7 @@ def registration_confirmation
     user = User.find(params[:id])
     @registrations = user.time_slots
     @class_slots = user.class_slots
+    @buddy_slots = user.buddy_slots
   end
 
   def checkin

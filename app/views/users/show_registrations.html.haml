@@ -13,16 +13,23 @@
             = link_to registration.event.title, registration.event
           %td.col-md-4
             = registration.event.date
-            %br/
-            = registration.start_time.strftime("%I:%M %p")
-            \-- #{registration.end_time.strftime("%I:%M %p")}
-      - @class_slots.each do |class_slots|
+            %br
+            #{registration.start_time.strftime("%I:%M %p")} - #{registration.end_time.strftime("%I:%M %p")}
+      - @class_slots.each do |class_slot|
         %tr
           %td.col-md-6
-            = link_to class_slots.ds_class.title, class_slots.ds_class
+            = link_to class_slot.ds_class.title, class_slot.ds_class
           %td.col-md-4
-            #{class_slots.ds_class.start_date} - #{class_slots.ds_class.end_date}
+            #{class_slot.ds_class.start_date} - #{class_slot.ds_class.end_date}
             %br
-            = render class_slots.days.reverse
+            = render class_slot.days.reverse
             %br
-            #{class_slots.start_time.strftime("%I:%M %p")} - #{class_slots.end_time.strftime("%I:%M %p")}
+            #{class_slot.start_time.strftime("%I:%M %p")} - #{class_slot.end_time.strftime("%I:%M %p")}
+      - @buddy_slots.each do |buddy_slot|
+        %tr
+          %td.col-md-6
+            = link_to buddy_slot.buddy_walk.title, buddy_slot.buddy_walk
+          %td.col-md-4
+            = buddy_slot.buddy_walk.date
+            %br
+            #{buddy_slot.start_time.strftime("%I:%M %p")} - #{buddy_slot.end_time.strftime("%I:%M %p")}
