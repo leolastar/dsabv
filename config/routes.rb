@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   get 'class_slots/destory'
 
+  get 'buddy_slots/create'
+
+  get 'buddy_slots/destory'
+
   resources :ds_classes
 
   resources :buddy_walks
@@ -32,9 +36,10 @@ Rails.application.routes.draw do
   end
 
   resources :buddy_walks do
-    resources :time_slots, only: [:create, :destroy]
+    resources :buddy_slots, only: [:create, :destroy]
     member do
       put 'register'
+      put 'unregister'
     end
   end
 
@@ -62,6 +67,8 @@ Rails.application.routes.draw do
   get    'remove_staff_role' => 'users#remove_staff_role'
   get    'schedule_buddy_walk' => 'buddy_walks#schedule'
   get    'edit_schedule_buddy_walk' => 'buddy_walks#edit_schedule'
+  patch    'schedule_update' => 'buddy_walks#schedule_update'
+  patch    'edit_schedule_update' => 'buddy_walks#edit_schedule_update'
 
   get    'signup' => 'users#new'
   get    'login'  => 'sessions#new'

@@ -44,7 +44,7 @@ class BuddyWalksController < ApplicationController
   def update
     @buddy_walk = BuddyWalk.find params[:id]
     if @buddy_walk.update_attributes(buddy_walk_params)
-      flash[:success] = "Buddy updated."
+      flash[:success] = "Buddy walk deal updated."
       redirect_to @buddy_walk
     else
       render 'edit'
@@ -53,13 +53,13 @@ class BuddyWalksController < ApplicationController
 
   def destroy
     @buddy_walk = BuddyWalk.find params[:id]
-    @buddy_walk.buddy_slot.each do |buddy_slot|
-      buddy_slot.users.each do |user|
-        EventMailer.event_cancellation(user, buddy_slot).deliver
+    if @buddy_walk.buddy_slot != nil
+      @buddy_walk.buddy_slot.users.each do |user|
+        EventMailer.event_cancellation_buddy(user, @buddy_walk.buddy_slot).deliver
       end
     end
     @buddy_walk.destroy
-    flash[:flash] = "BuddyWalk '#{@buddy_walk.title}' deleted."
+    flash[:info] = "BuddyWalk '#{@buddy_walk.title}' deleted."
 		redirect_to buddy_walks_path
   end
 
@@ -74,14 +74,17 @@ class BuddyWalksController < ApplicationController
 
   def register
     buddy_slot = BuddySlot.find(params[:buddy_slot_id])
-    
-    buddy_slot.save
+    if current_user.buddy_slots.include?(buddy_slot)
+      redirect_to registrations_user_path(current_user)
+    else
+      buddy_slot.save
 
-    EventMailer.event_registration(current_user, buddy_slot).deliver
+      EventMailer.event_registration_buddy(current_user, buddy_slot).deliver
 
-    current_user.buddy_slot << buddy_slot
-    flash[:success] = "You have successfully registered the event."
-    redirect_to registrations_user_path(current_user)
+      current_user.buddy_slots << buddy_slot
+      flash[:success] = "You have successfully registered the event."
+      redirect_to registrations_user_path(current_user)
+    end
   end
   
   def unregister
@@ -91,16 +94,17 @@ class BuddyWalksController < ApplicationController
     else
       current_user.appointment(buddy_slot).destroy
       current_user.buddy_slots.delete(buddy_slot)
-    flash[:success] = "You have successfully unregistered for this event."
+      flash[:success] = "You have successfully unregistered for this event."
       redirect_to registrations_user_path(current_user)
     end
   end
 
   def schedule
-    @buddy_walk = BuddyWalk.new(buddy_schedule)
-    buddy_walk_first = BuddyWalk.all.first
-    @buddy_walk.date = buddy_walk_first.date
-    @buddy_walk.place = buddy_walk_first.place
+    @buddy_walk = BuddyWalk.all.first
+  end
+
+  def schedule_update
+    @buddy_walk = BuddyWalk.new(buddy_walk_params)
     if @buddy_walk.save
       flash[:success] = "New Buddy Walk has been created."
       redirect_to buddy_walk_path(@buddy_walk)
@@ -110,21 +114,21 @@ class BuddyWalksController < ApplicationController
   end
 
   def edit_schedule
+    @buddy_walk = BuddyWalk.all.first
+  end
+
+  def edit_schedule_update
     BuddyWalk.all.each do |buddy_walk|
-      @buddy_walk.update_attributes(buddy_schedule)
+      buddy_walk.update_attributes(buddy_walk_params)
     end
-    flash[:success] = "Buddy Walk updated."
-    redirect_to @buddy_walk
+    flash[:success] = "Buddy Walk schedule updated."
+    redirect_to buddy_walks_path
   end
 
   private
 
     def buddy_walk_params
       params.require(:buddy_walk).permit(:title, :date, :place, :description)
-    end
-
-    def buddy_schedule
-      params.require(:buddy_walk).permit(:title, :description)
     end
 
 end

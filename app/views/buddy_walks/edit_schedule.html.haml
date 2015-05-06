@@ -1,16 +1,20 @@
-- provide(:title, 'Edit Buddy Walk Group')
+- provide(:title, 'Edit Buddy Walk Event Schedule')
 %div.row
   %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
-    %h1 Edit Buddy Walk Group
+    %h1 Edit Buddy Walk Event Schedule
     %div.row
       %div.col-xs-12.col-md-6.col-md-offset-3
-        = form_for(@buddy_walk) do |f|
+        = form_for(@buddy_walk, url: {controller: :buddy_walks, action: :edit_schedule_update}) do |f|
           = render 'shared/error_messages', object: f.object
 
-          = f.label :title
-          = f.text_field :title, class: 'form-control'
+          = f.hidden_field :date, :value => @buddy_walk.title
 
-          = f.label :description
-          = f.text_area :description, class: 'form-control', :placeholder => "Enter description"
+          = f.hidden_field :description, :value => @buddy_walk.description
+
+          = f.label :date, "Date"
+          = f.text_field :date, class: "datepicker", :value => @buddy_walk.date.strftime("   %B %_d, %Y"), :placeholder => "Ex: September 2, 2015"
+
+          = f.label :place, "Location"
+          = f.text_field :place, class: 'form-control', :placeholder => "Enter location"
 
           = f.submit 'Save', class: 'btn btn-primary home-page'

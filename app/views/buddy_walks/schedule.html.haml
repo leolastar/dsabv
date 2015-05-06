@@ -1,16 +1,20 @@
 %div.row
   %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
-    %h1 New Buddy Walk
+    %h1 New Buddy Walk Deal
     %div.row
       %div.col-xs-12.col-md-6.col-md-offset-3
-        = form_for(@buddy_walk) do |f|
+        = form_for(@buddy_walk, url: {controller: :buddy_walks, action: :schedule_update}) do |f|
           = render 'shared/error_messages', object: f.object
 
           = f.label :title
-          = f.text_field :title, class: 'form-control'
+          = f.text_field :title, :value => "", class: 'form-control'
+
+          = f.hidden_field :date, :value => @buddy_walk.date.strftime("   %B %_d, %Y")
+
+          = f.hidden_field :place, :value => @buddy_walk.place
 
           = f.label :description
-          = f.text_area :description, class: 'form-control', :placeholder => "Enter description"
+          = f.text_area :description, :value => "", class: 'form-control', :placeholder => "Enter description"
 
-          = f.submit "Create new Buddy Walk Registration group", class: "btn btn-primary home-page"
+          = f.submit "Create new Buddy Walk Registration deal", class: "btn btn-primary home-page"
 
