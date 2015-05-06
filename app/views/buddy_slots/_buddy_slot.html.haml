@@ -1,9 +1,8 @@
 %li{:id => "buddy slot #{buddy_slot.id}"}
   %span.content
-    Registered Users:
-    #{buddy_slot.users.count(:all)} 
+    %h3 Registered Users: #{buddy_slot.users.count(:all)} 
     %br
-    - if logged_in? && current_user.admin
+    - if logged_in? && current_user.buddy_slots.exists?(buddy_slot.id)
       = link_to "Delete", { action: :destroy, controller: :buddy_slots, id: buddy_slot.id, buddy_walk_id: buddy_slot.buddy_walk.id }, method: :delete, data: { confirm: "Are you sure?" }
     - elsif logged_in? && current_user.buddy_slot.exists?(buddy_slot.id)
       Registered &nbsp;

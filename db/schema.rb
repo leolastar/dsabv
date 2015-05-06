@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20150506013100) do
     t.integer  "buddy_slot_id"
   end
 
+  add_index "appointments", ["buddy_slot_id"], name: "index_appointments_on_buddy_slot_id"
+
   create_table "articles", force: true do |t|
     t.text     "text"
     t.datetime "created_at"
