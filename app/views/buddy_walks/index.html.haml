@@ -17,6 +17,11 @@
           = link_to "Add new Registration Deal", schedule_buddy_walk_path
           %br
           = link_to "Change Buddy Walk Schedule", edit_schedule_buddy_walk_path
+          %br
+          - if @buddy_walks.first.buddy_slot == nil
+            = link_to "Add time slot to buddy walk", add_buddy_slot_to_buddy_walks_path
+          - else
+            = link_to "Change time slot of buddy walk", edit_buddy_slot_of_buddy_walks_path
         - else
           = link_to "Schedule Buddy Walk Event", new_buddy_walk_path
 

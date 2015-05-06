@@ -6,7 +6,6 @@
     %h3 Registered Users: #{buddy_slot.users.count(:all)} 
     %br
     - if logged_in? && current_user.admin
-      = link_to "Delete", { action: :destroy, controller: :buddy_slots, id: buddy_slot.id, buddy_walk_id: buddy_slot.buddy_walk.id }, method: :delete, data: { confirm: "Are you sure?" }
     - elsif logged_in? && current_user.buddy_slots.exists?(buddy_slot.id)
       Registered &nbsp;
       = link_to "Unregister", { action: :unregister, buddy_slot_id: buddy_slot.id }, { method: :put, data: { confirm: "You sure?" } }

@@ -29,7 +29,6 @@ class BuddyWalksController < ApplicationController
   def create
     @buddy_walk = BuddyWalk.new(buddy_walk_params)
     if @buddy_walk.save
-      @buddy_walk.buddy_slot = BuddySlot.new
       flash[:success] = "New Buddy Walk has been created."
       redirect_to buddy_walk_path(@buddy_walk)
     else
@@ -64,8 +63,15 @@ class BuddyWalksController < ApplicationController
   end
 
   def add_buddy_slot
-    @buddy_walk = BuddyWalk.find params[:id]
-    @buddy_slot = @buddy_walk.buddy_slot.build
+    @buddy_walk = BuddyWalk.all.first
+    @buddy_walk.buddy_slot = BuddySlot.new
+    @buddy_slot = @buddy_walk.buddy_slot
+  end
+
+  def edit_buddy_slot
+    @buddy_walk = BuddyWalk.all.first
+    @buddy_walk.buddy_slot = BuddySlot.new
+    @buddy_slot = @buddy_walk.buddy_slot
   end
 
   def show_roster
@@ -104,10 +110,15 @@ class BuddyWalksController < ApplicationController
   end
 
   def schedule_update
-    @buddy_walk = BuddyWalk.new(buddy_walk_params)
-    if @buddy_walk.save
-      flash[:success] = "New Buddy Walk has been created."
-      redirect_to buddy_walk_path(@buddy_walk)
+    buddy_walk = BuddyWalk.new(buddy_walk_params)
+    first = BuddyWalk.all.first
+    if first.buddy_slot != nil
+      buddy_walk.buddy_slot = first.buddy_slot
+      buddy_walk.buddy_slot.save
+    end 
+    if buddy_walk.save
+      flash[:success] = "New Buddy Walk Deal has been created."
+      redirect_to buddy_walk_path(buddy_walk)
     else
       redirect_to schedule_buddy_walk_path
     end
