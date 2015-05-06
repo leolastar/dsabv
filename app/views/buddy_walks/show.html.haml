@@ -25,6 +25,6 @@
           |
         = link_to "Back", buddy_walks_path
       %div.col-xs-12.col-sm-4
-        - if @buddy_walk.buddy_slot != nil
+        - if @buddy_slot != nil
           %ol.time_slots
-          = render @buddy_slot
+            = render @buddy_slot

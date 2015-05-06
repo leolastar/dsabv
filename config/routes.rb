@@ -7,10 +7,6 @@ Rails.application.routes.draw do
   get 'class_slots/create'
 
   get 'class_slots/destory'
-  
-  get 'buddy_slots/create'
-
-  get 'buddy_slots/destory'
 
   get 'buddy_slots/create'
 
