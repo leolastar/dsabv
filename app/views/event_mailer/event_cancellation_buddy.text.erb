@@ -1,0 +1,13 @@
+<p>
+Dear <%= @user.name %>
+</p>
+
+<p>
+We are sorry to tell you the following event has been cancelled.
+</p>
+
+<p>
+Event: <%= @buddy_slot.buddy_walk.title %><br>
+Date: <%= @buddy_slot.buddy_walk.date %><br>
+<%= @buddy_slot.start_time %> -- <%= @buddy_slot.end_time %>
+</p>
