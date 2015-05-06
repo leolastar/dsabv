@@ -83,15 +83,34 @@ class BuddyWalksController < ApplicationController
   end
 
   def schedule
+    @buddy_walk = BuddyWalk.new(buddy_schedule)
+    buddy_walk_first = BuddyWalk.all.first
+    @buddy_walk.date = buddy_walk_first.date
+    @buddy_walk.place = buddy_walk_first.place
+    if @buddy_walk.save
+      flash[:success] = "New Buddy Walk has been created."
+      redirect_to buddy_walk_path(@buddy_walk)
+    else
+      redirect_to schedule_buddy_walk_path
+    end
   end
 
   def edit_schedule
+    BuddyWalk.all.each do |buddy_walk|
+      @buddy_walk.update_attributes(buddy_schedule)
+    end
+    flash[:success] = "Buddy Walk updated."
+    redirect_to @buddy_walk
   end
 
   private
 
     def buddy_walk_params
       params.require(:buddy_walk).permit(:title, :date, :place, :description)
+    end
+
+    def buddy_schedule
+      params.require(:buddy_walk).permit(:title, :description)
     end
 
 end
