@@ -8,6 +8,12 @@ Rails.application.routes.draw do
 
   get 'class_slots/destory'
 
+  patch 'buddy_slots/create'
+
+  patch 'buddy_slots/edit'
+
+  get 'buddy_slots/destory'
+
   resources :ds_classes
 
   resources :buddy_walks
@@ -32,14 +38,15 @@ Rails.application.routes.draw do
   end
 
   resources :buddy_walks do
-    resources :time_slots, only: [:create, :destroy]
+    resources :buddy_slots, only: [:create, :destroy]
     member do
       put 'register'
+      put 'unregister'
     end
   end
 
   resources :ds_classes do
-    resources :class_slots, only: [:create, :destroy]
+    resources :class_slots, only: [:create, :edit, :destroy]
     member do
       put 'register'
       put 'unregister'
@@ -60,6 +67,10 @@ Rails.application.routes.draw do
   get    'checkin_buddy_walk' => 'users#checkin_buddy_walk'
   get    'give_staff_role' => 'users#give_staff_role'
   get    'remove_staff_role' => 'users#remove_staff_role'
+  get    'schedule_buddy_walk' => 'buddy_walks#schedule'
+  get    'edit_schedule_buddy_walk' => 'buddy_walks#edit_schedule'
+  post    'schedule_update' => 'buddy_walks#schedule_update'
+  patch    'edit_schedule_update' => 'buddy_walks#edit_schedule_update'
 
   get    'signup' => 'users#new'
   get    'login'  => 'sessions#new'
@@ -75,8 +86,9 @@ Rails.application.routes.draw do
   get    'events/:id/roster'        => 'events#show_roster',   as: 'roster_of_event'
   get    'events/:id/add_time_slot' => 'events#add_time_slot', as: 'add_time_slot_to_event'
 
-  get    'buddy_walks/:id/roster'        => 'buddy_walks#show_roster',   as: 'roster_of_buddy_walks'
-  get    'buddy_walks/:id/add_time_slot' => 'buddy_walks#add_time_slot', as: 'add_time_slot_to_buddy_walks'
+  get    'buddy_walks/:id/roster'        => 'buddy_walks#show_roster',   as: 'roster_of_buddy_walk'
+  get    'add_buddy_slot' => 'buddy_walks#add_buddy_slot', as: 'add_buddy_slot_to_buddy_walks'
+  get    'edit_buddy_slot' => 'buddy_walks#edit_buddy_slot', as: 'edit_buddy_slot_of_buddy_walks'
 
   get    'ds_classes/:id/roster'        => 'ds_classes#show_roster',   as: 'roster_of_ds_class'
   get    'ds_classes/:id/add_time_slot' => 'ds_classes#add_time_slot', as: 'add_time_slot_to_ds_class'

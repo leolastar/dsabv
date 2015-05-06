@@ -1,6 +1,20 @@
-<h1>Editing buddy_walk</h1>
+- provide(:title, 'Edit Buddy Walk Deal')
+%div.row
+  %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
+    %h1 Edit Buddy Walk Deal
+    %div.row
+      %div.col-xs-12.col-md-6.col-md-offset-3
+        = form_for(@buddy_walk) do |f|
+          = render 'shared/error_messages', object: f.object
 
-<%= render 'form' %>
+          = f.label :title
+          = f.text_field :title, class: 'form-control'
 
-<%= link_to 'Show', @buddy_walk %> |
-<%= link_to 'Back', buddy_walks_path %>
+          = f.hidden_field :date, :value => @buddy_walk.date.strftime("   %B %_d, %Y")
+
+          = f.hidden_field :place, :value => @buddy_walk.place
+
+          = f.label :description
+          = f.text_area :description, class: 'form-control', :placeholder => "Enter description"
+
+          = f.submit 'Save', class: 'btn btn-primary home-page'

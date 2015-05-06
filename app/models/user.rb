@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   has_many :appointments
   has_many :time_slots, through: :appointments
   has_many :class_slots, through: :appointments
+  has_many :buddy_slots, through: :appointments
   has_many :events, through: :time_slots
-  has_many :buddy_walks, through: :time_slots
-  has_many :ds_classes, through: :time_slots
+  has_many :buddy_walks, through: :buddy_slots
+  has_many :ds_classes, through: :class_slots
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -95,6 +96,10 @@ class User < ActiveRecord::Base
   # Register an event
   def register(event)
     self.events << event
+  end
+  
+  def register(buddy_walk)
+    self.buddy_walks << buddy_walk
   end
 
 private

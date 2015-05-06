@@ -1,6 +1,6 @@
 class BuddyWalk < ActiveRecord::Base
-	has_many :time_slots, dependent: :destroy
-	has_many :users, through: :time_slots
+  has_one :buddy_slot, dependent: :destroy
+  has_many :users, through: :buddy_slot
 	validates :date, presence: true
 
 	def send_event_register_email
@@ -12,3 +12,5 @@ class BuddyWalk < ActiveRecord::Base
 			"%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%")
 	end
 end
+
+  

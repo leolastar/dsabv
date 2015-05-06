@@ -1,0 +1,14 @@
+%li{:id => "buddy slot #{buddy_slot.id}"}
+  %span.content
+    #{buddy_slot.start_time.strftime("%I:%M %p")} --
+    #{buddy_slot.end_time.strftime("%I:%M %p")}
+  %span.content
+    %h3 Registered Users: #{buddy_slot.users.count(:all)} 
+    %br
+    - if logged_in? && current_user.admin
+    - elsif logged_in? && current_user.buddy_slots.exists?(buddy_slot.id)
+      Registered &nbsp;
+      = link_to "Unregister", { action: :unregister, buddy_slot_id: buddy_slot.id }, { method: :put, data: { confirm: "You sure?" } }
+    - else
+      = link_to "Register", { action: :register, buddy_slot_id: buddy_slot.id }, { method: :put }
+

@@ -1,0 +1,13 @@
+<p>
+Dear <%= @user.name %>
+</p>
+
+<p>
+Thank you for registering the following event.
+</p>
+
+<p>
+Event: <%= @buddy_slot.buddy_walk.title %><br>
+Date: <%= @buddy_slot.buddy_walk.date %><br>
+<%= @buddy_slot.start_time %> -- <%= @buddy_slot.end_time %>
+</p>

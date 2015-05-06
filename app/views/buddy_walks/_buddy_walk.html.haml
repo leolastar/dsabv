@@ -1,0 +1,10 @@
+%li
+  %div{:align => "left"}
+    #{buddy_walk.date}:
+    %div{:align => "center"}
+      = link_to buddy_walk.title, buddy_walk
+      - if logged_in? && current_user.admin?
+        %div{:style => "float: right"}
+          = link_to "Edit", edit_buddy_walk_path(buddy_walk)
+          |
+          = link_to "Delete", buddy_walk, method: :delete, data: { confirm: "You sure?" } 

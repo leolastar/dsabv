@@ -1,111 +1,150 @@
 class BuddyWalksController < ApplicationController
-  before_action :logged_in_user, only: [:register]
-  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_time_slot]
+  before_action :logged_in_user, only: [:register, :unregister]
+  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_buddy_slot]
   before_action :staff_user,     only: [:show_roster]
 
   def index
     @article = Article.find_by_id(4)
     @buddy_walks = BuddyWalk.all
-    if params[:query]
-      @buddy_walks = BuddyWalk.search(params[:query])
-
-      url = "/searchresults_events?query=" + params[:query]
-      redirect_to url
-    else
-      @buddy_walks = []
-    end
-
-    @buddy_walks = BuddyWalk.paginate(page: params[:page])
   end
 
   def search
-    @events = Event.all
+    @buddy_walks = BuddyWalk.all
     if params[:query]
-      @events = Event.search(params[:query])
+      @buddy_walks = BuddyWalk.search(params[:query])
     else
-      @events = []
+      @buddy_walks = []
     end
   end
 
   def show
-    @event = Event.find params[:id]
-    @time_slots = @event.time_slots.paginate(page: params[:page])
+    @buddy_walk = BuddyWalk.find(params[:id])
+    @buddy_slot = @buddy_walk.buddy_slot
   end
 
   def new
-    @event = Event.new
+    @buddy_walk = BuddyWalk.new
   end
 
   def create
-    @event = Event.new(event_params)
-    if @event.save
-      flash[:success] = "New event has been created."
-      redirect_to event_path(@event)
+    @buddy_walk = BuddyWalk.new(buddy_walk_params)
+    if @buddy_walk.save
+      flash[:success] = "New Buddy Walk has been created."
+      redirect_to buddy_walk_path(@buddy_walk)
     else
       render 'new'
     end
   end
 
   def edit
-    @event = Event.find params[:id]
+    @buddy_walk = BuddyWalk.find params[:id]
   end
 
   def update
-    @event = Event.find params[:id]
-    if @event.update_attributes(event_params)
-      flash[:success] = "Event updated."
-      redirect_to @event
+    @buddy_walk = BuddyWalk.find params[:id]
+    if @buddy_walk.update_attributes(buddy_walk_params)
+      flash[:success] = "Buddy walk deal updated."
+      redirect_to @buddy_walk
     else
       render 'edit'
     end
   end
 
   def destroy
-    @event = Event.find params[:id]
-    @event.time_slots.each do |time_slot|
-      time_slot.users.each do |user|
-        EventMailer.event_cancellation(user, time_slot).deliver
+    @buddy_walk = BuddyWalk.find params[:id]
+    if @buddy_walk.buddy_slot != nil
+      @buddy_walk.buddy_slot.users.each do |user|
+        EventMailer.event_cancellation_buddy(user, @buddy_walk.buddy_slot).deliver
       end
     end
-    @event.destroy
-    flash[:flash] = "Event '#{@event.title}' deleted."
-    redirect_to events_path
+    @buddy_walk.destroy
+    flash[:info] = "BuddyWalk '#{@buddy_walk.title}' deleted."
+		redirect_to buddy_walks_path
   end
 
-  def add_time_slot
-    @event = Event.find params[:id]
-    @time_slots = @event.time_slots.paginate(page: params[:page])
-    @time_slot = @event.time_slots.build
+  def add_buddy_slot
+    @buddy_walk = BuddyWalk.all.first
+    @buddy_walk.buddy_slot = BuddySlot.new
+    @buddy_slot = @buddy_walk.buddy_slot
+  end
+
+  def edit_buddy_slot
+    @buddy_walk = BuddyWalk.all.first
+    @buddy_walk.buddy_slot = BuddySlot.new
+    @buddy_slot = @buddy_walk.buddy_slot
   end
 
   def show_roster
-    @event = Event.find(params[:id])
+    @buddy_walk = BuddyWalk.find(params[:id])
   end
 
   def register
-    time_slot = TimeSlot.find(params[:time_slot_id])
+    buddy_slot = BuddySlot.find(params[:buddy_slot_id])
+    if current_user.buddy_slots.include?(buddy_slot)
+      redirect_to registrations_user_path(current_user)
+    else
+      buddy_slot.save
 
-    time_slot.remaining_capacity -= 1
-    time_slot.save
+      EventMailer.event_registration_buddy(current_user, buddy_slot).deliver
 
-    EventMailer.event_registration(current_user, time_slot).deliver
+      current_user.buddy_slots << buddy_slot
+      flash[:success] = "You have successfully registered the event."
+      redirect_to registrations_user_path(current_user)
+    end
+  end
+  
+  def unregister
+    buddy_slot = BuddySlot.find(params[:buddy_slot_id])
+    if !current_user.buddy_slots.include?(buddy_slot)
+      redirect_to registrations_user_path(current_user)
+    else
+      current_user.appointment(buddy_slot).destroy
+      current_user.buddy_slots.delete(buddy_slot)
+      flash[:success] = "You have successfully unregistered for this event."
+      redirect_to registrations_user_path(current_user)
+    end
+  end
 
-    current_user.time_slots << time_slot
-    flash[:success] = "You have successfully registered the event."
-    redirect_to registrations_user_path(current_user)
+  def schedule
+    @buddy_walk = BuddyWalk.new
+  end
+
+  def schedule_update
+    @buddy_walk = BuddyWalk.new(buddy_walk_params)
+    first = BuddyWalk.all.first
+    @buddy_walk.date = first.date
+    @buddy_walk.place = first.place
+    if first.buddy_slot != nil
+      @buddy_walk.buddy_slot = BuddySlot.new
+      @buddy_walk.buddy_slot.start_time = first.buddy_slot.start_time
+      @buddy_walk.buddy_slot.end_time = first.buddy_slot.end_time
+      @buddy_walk.buddy_slot.save
+    end 
+    if @buddy_walk.save
+      flash[:success] = "New Buddy Walk Deal has been created."
+      redirect_to buddy_walk_path(@buddy_walk)
+    else
+      flash[:info] = "New Buddy walk deal did not save!"
+      redirect_to schedule_buddy_walk_path
+    end
+  end
+
+  def edit_schedule
+    @buddy_walk = BuddyWalk.all.first
+  end
+
+  def edit_schedule_update
+    BuddyWalk.all.each do |buddy_walk|
+      buddy_walk.update_attributes(buddy_walk_params)
+    end
+    flash[:success] = "Buddy Walk schedule updated."
+    redirect_to buddy_walks_path
   end
 
   private
 
-    def event_params
-      params.require(:event).permit(:title,
-                                    :date,
-                                    :place,
-                                    :description)
-    end
-
     def buddy_walk_params
-      params.require(:event).permit(:title, :date, :place, :description)
+      params.require(:buddy_walk).permit(:title, :date, :place, :description)
     end
 
 end

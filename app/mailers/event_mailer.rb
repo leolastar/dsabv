@@ -18,6 +18,12 @@ class EventMailer < ActionMailer::Base
     mail to: user.email, subject: "Event Registration"
   end
 
+  def event_registration_buddy(user, buddy_slot)
+    @user = user
+    @buddy_slot = buddy_slot
+    mail to: user.email, subject: "Event Registration"
+  end
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -32,6 +38,12 @@ class EventMailer < ActionMailer::Base
    def event_cancellation_class(user, class_slot)
     @user = user
     @class_slot = class_slot
+    mail to: user.email, subject: "Event Cancellation"
+  end
+
+  def event_cancellation_buddy(user, buddy_slot)
+    @user = user
+    @buddy_slot = buddy_slot
     mail to: user.email, subject: "Event Cancellation"
   end
 end
