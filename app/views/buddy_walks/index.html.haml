@@ -10,7 +10,7 @@
           = @article.text.html_safe
     %br
     %ul.events
-      = render @buddy_walks.sort_by &:date
+      = render @buddy_walks.sort_by{|bw| [bw.title, bw.date]}
       %br
       -if logged_in? && current_user.admin
         - if @buddy_walks.any?
