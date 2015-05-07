@@ -17,10 +17,10 @@
             </tr>
             <% @buddy_walk.buddy_slot.users.each do |user| %>
               <tr>
-                <% if user.appointment(@buddy_walk.buddy_slot).is_checkedin %>
+                <% if user.appointment_buddy(@buddy_walk.buddy_slot).is_checkedin %>
                   <td><%= link_to "Checked", root_path, class: "btn btn-primary disabled home-page" %></td>
                 <% else %>
-                <td><%= link_to "Check in", checkin_path(:id => user.id, :buddy_slot_id => @buddy_walk.buddy_slot.id, :buddy_walk_id => @buddy_walk.id), class: "btn btn-primary home-page" %></td>
+                <td><%= link_to "Check in", checkin_buddy_walk_path(:id => user.id, :buddy_slot_id => @buddy_walk.buddy_slot.id, :buddy_walk_id => @buddy_walk.id), class: "btn btn-primary home-page" %></td>
                 <% end %>
                 <td><%= link_to user.name, user %></td>
                 <td><%= user.email %></td>

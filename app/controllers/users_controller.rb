@@ -116,7 +116,7 @@ def registration_confirmation
   def checkin_buddy_walk
     appointment = Appointment.where(:user_id => params[:id], :buddy_slot_id => params[:buddy_slot_id]).first
     appointment.update_attributes(:is_checkedin => true)
-    redirect_to roster_of_buddy_walks_url(params[:buddy_walk_id])
+    redirect_to roster_of_buddy_walk_url(params[:buddy_walk_id])
   end
 
   def give_staff_role

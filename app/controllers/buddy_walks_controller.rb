@@ -98,7 +98,7 @@ class BuddyWalksController < ApplicationController
     if !current_user.buddy_slots.include?(buddy_slot)
       redirect_to registrations_user_path(current_user)
     else
-      #current_user.appointment(buddy_slot).destroy
+      current_user.appointment_buddy(buddy_slot).destroy
       current_user.buddy_slots.delete(buddy_slot)
       flash[:success] = "You have successfully unregistered for this event."
       redirect_to registrations_user_path(current_user)
