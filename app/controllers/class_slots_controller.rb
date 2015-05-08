@@ -1,5 +1,5 @@
 class ClassSlotsController < ApplicationController
-  before_action :admin_user, only: [:create, :destroy]
+  before_action :admin_user, only: [:create, :destroy, :add_day, :remove_day]
 
   def create
     ds_class = DsClass.find params[:ds_class_id]

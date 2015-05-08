@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:index, :destroy, :give_staff_role, :remove_staff_role]
-  before_action :staff_user,     only: [:checkin]
+  before_action :staff_user,     only: [:checkin, :checkin_class, :checkin_buddy_walk]
 
 
 

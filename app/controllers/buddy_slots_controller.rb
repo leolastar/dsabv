@@ -1,5 +1,5 @@
 class BuddySlotsController < ApplicationController
-  before_action :admin_user, only: [:create, :destroy]
+  before_action :admin_user, only: [:create, :destroy, :edit]
 
   def create
     @buddy_walks = BuddyWalk.all

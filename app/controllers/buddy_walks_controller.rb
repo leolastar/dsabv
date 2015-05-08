@@ -1,6 +1,6 @@
 class BuddyWalksController < ApplicationController
   before_action :logged_in_user, only: [:register, :unregister]
-  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_buddy_slot]
+  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_buddy_slot, :edit_buddy_slot, :schedule_update, :schedule, :edit_schedule, :edit_schedule_update]
   before_action :staff_user,     only: [:show_roster]
 
   def index
