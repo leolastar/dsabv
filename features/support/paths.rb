@@ -39,10 +39,16 @@ module NavigationHelpers
       then "/events/1"
     when /the class page/
       then "/ds_classes/1"
+    when /the buddy walk page/
+      then "/buddy_walks/1"
     when /the add time slot page/
       then add_time_slot_to_event_path(1)
     when /the add class slot page/
       then add_time_slot_to_ds_class_path(1)
+     when /the add buddy slot page/
+      then add_buddy_slot_to_buddy_walks_path
+    when /the edit buddy slot page/
+      then edit_buddy_slot_to_buddy_walks_path
     when /the events roster/
       then roster_of_event_path(1)
     when /the class roster/
@@ -51,6 +57,10 @@ module NavigationHelpers
       then registrations_user_path(2)
     when /add day page/
       then add_day_to_class_slot_path(1,1)
+    when /schedule buddy walk page/
+      then schedule_buddy_walk_path
+    when /the buddy walk page with id (\d+)/
+      then "/buddy_walks/" + $1
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

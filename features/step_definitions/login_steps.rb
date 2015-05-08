@@ -18,7 +18,7 @@ Given(/^I visit the home page$/) do
   visit path_to("the home page")
 end
 
-Given(/^I visit the buddy walk page$/) do
+Given(/^I visit the buddy walks page$/) do
   if(Article.find_by_id(4) == nil)
     Article.create(:text => "test 4", :id => 4)
   end

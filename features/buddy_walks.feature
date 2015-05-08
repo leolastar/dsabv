@@ -5,25 +5,42 @@ Feature: Buddy walks Management
 
     Scenario: Create the first buddy walk
     Given I am login as an admin                
-        And I visit the buddy page
-    When I create a new class
-    Then I should see this new class
+        And I visit the buddy walks page
+    When I create a new buddy walk
+    Then I should see this new buddy walk
 
     Scenario: Create the first buddy walk as an user
     Given I am login as an user                
         And I visit the classes page
-    Then I should not see "Add new class"
+    Then I should not see "Schedule Buddy Walk Event"
+        And I should not see "Add new Registration Deal "
+        And I should not see "Change Buddy Walk Schedule "
+        And I should not see "Change time slot of buddy walk"
+        And I should not see "Add time slot to buddy walk"
+    When I go to the new buddy walk page
+    Then I should be on the home page
 
     Scenario: Create the second buddy walk
     Given I am login as an admin                
         And I visit the classes page
-    When I create a new class
-    Then I should see this new class
+    When I create a new buddy walk
+    Then I should see this new buddy walk
+    When I create another buddy walk
+    Then I should see both buddy walks with the same date
 
     Scenario: Create the second buddy walk as an user
-    Given I am login as an user                
-        And I visit the classes page
-    Then I should not see "Add new class"
+    Given an admin creates a buddy walk
+        And I am login as an user                
+        And I visit the buddy walks page
+    Then I should see "Test Event"
+        And I should not see "Schedule Buddy Walk Event"
+        And I should not see "Add new Registration Deal "
+        And I should not see "Change Buddy Walk Schedule "
+        And I should not see "Change time slot of buddy walk"
+        And I should not see "Add time slot to buddy walk"
+    When I go to the schedule buddy walk page
+    Then I should be on the home page
+
 
     Scenario: Add buddy slots as an admin
     Given I am login as an admin                
