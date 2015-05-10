@@ -32,7 +32,6 @@ Feature: Register for a class
         And I should not see "Unregister"
         And I should not see "Registered"
 
-
     Scenario: Check users in as an admin
     Given an admin created a class
         And an admin creates a class slot
