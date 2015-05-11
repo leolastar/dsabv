@@ -55,6 +55,8 @@ module NavigationHelpers
       then roster_of_event_path(1)
     when /the class roster/
       then roster_of_ds_class_path(1)
+    when /the buddy walk roster/
+      then roster_of_buddy_walk_path(1)
     when /my registrations page/
       then registrations_user_path(2)
     when /add day page/
