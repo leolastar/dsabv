@@ -14,7 +14,7 @@
           = @buddy_walk.description.html_safe
           %p
         - if logged_in? && current_user.staff
-          = link_to "Roster", roster_of_event_path(@buddy_walk)
+          = link_to "Roster", roster_of_buddy_walk_path(@buddy_walk)
           |
         - if logged_in? && current_user.admin
           = link_to "Edit", edit_buddy_walk_path(@buddy_walk)
