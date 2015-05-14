@@ -1,0 +1,38 @@
+- provide(:title, 'Buddy walk Roster')
+
+%div.row
+  %div.col-xs-12.col-sm-10.col-sm-offset-1.jumbotron
+    - if logged_in? && (current_user.admin || current_user.staff)
+      %h1= @buddy_walk.title
+      %div.col-xs-6.col-sm-6.col-md-offset-3
+        = form_for buddy_walk_user_search_path(:id => @buddy_walk.id), method: :get do |f|
+          = text_field_tag :query, params[:query], :placeholder => "Enter search", class: 'form-control'
+          = submit_tag "Search", name: nil, class: "btn btn-primary home-page"
+          %br
+      %ul#details.col-xs-12.col-md-12
+        #{@buddy_walk.date}
+        %br
+        #{@buddy_walk.place}
+        %br
+        %br
+        #{@buddy_walk.buddy_slot.start_time.strftime("%I:%M %p")} - #{@buddy_walk.buddy_slot.end_time.strftime("%I:%M %p")}
+        %table.table
+          %tr
+            %th.col-xs-2
+            %th.col-xs-2 Name
+            %th.col-xs-2 Email
+            %th.col-xs-2 Phone
+            %th.col-xs-2 Emerg. Phone
+          - @users.each do |user|
+            %tr
+              - if user.appointment_buddy(@buddy_walk.buddy_slot).is_checkedin
+                %td= link_to "Checked", root_path, class: "btn btn-primary disabled home-page"
+              - else
+                %td= link_to "Check in", checkin_buddy_walk_path(:id => user.id, :buddy_slot_id => @buddy_walk.buddy_slot.id, :buddy_walk_id => @buddy_walk.id), class: "btn btn-primary home-page" 
+              %td= link_to user.name, user
+              %td= user.email
+              %td= user.phone
+              %td= user.emergency_contact_phone
+        = link_to "Back", buddy_walk_path(@buddy_walk)
+    - else
+      Access Denied

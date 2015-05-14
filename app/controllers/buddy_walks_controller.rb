@@ -1,7 +1,7 @@
 class BuddyWalksController < ApplicationController
   before_action :logged_in_user, only: [:register, :unregister]
   before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :add_buddy_slot, :edit_buddy_slot, :schedule_update, :schedule, :edit_schedule, :edit_schedule_update]
-  before_action :staff_user,     only: [:show_roster]
+  before_action :staff_user,     only: [:show_roster, :roster_search]
 
   def index
     @article = Article.find_by_id(4)
@@ -14,6 +14,15 @@ class BuddyWalksController < ApplicationController
       @buddy_walks = BuddyWalk.search(params[:query])
     else
       @buddy_walks = []
+    end
+  end
+
+  def roster_search
+    @buddy_walk = BuddyWalk.find(params[:id])
+    if params[:query]
+      @users = @buddy_walk.buddy_slot.users.search(params[:query])
+    else
+      @users = []
     end
   end
 
@@ -76,6 +85,11 @@ class BuddyWalksController < ApplicationController
 
   def show_roster
     @buddy_walk = BuddyWalk.find(params[:id])
+    if params[:query]
+      @users = @buddy_walk.buddy_slot.users.search(params[:query])
+    else
+      @users = @buddy_walk.buddy_slot.users
+    end
   end
 
   def register
