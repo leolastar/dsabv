@@ -3,6 +3,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center jumbotron">
     <h1>Calendar</h1>
+    <p>Note: Classes are not on this calendar. The dates for the classes are unique for each class. Please visit <%= link_to ds_classes_path do %>the classes page<% end %> for more info</p>
     <div class="well controls">
       <%= link_to calendar_path(date: @date - 1.month), class: "btn btn-default" do %>
         <i class="glyphicon glyphicon-backward"></i>
