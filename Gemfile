@@ -67,7 +67,7 @@ gem 'unicorn', group: :production
 gem 'byebug', group: [:development, :test]
 
 # Access an IRB console on exceptions page and /console in development
-gem 'web-console', '~> 2.0.0.beta2', group: [:development, :test]
+gem 'web-console', '~> 2.1.3', group: [:development, :test]
 
 # Use Haml for templates
 gem 'haml'
